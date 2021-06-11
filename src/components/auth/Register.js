@@ -6,7 +6,9 @@ export const Register = (props) => {
     const firstName = useRef()
     const lastName = useRef()
     const email = useRef()
-    const bio = useRef()
+    const address = useRef()
+    const phoneNumber = useRef()
+    const title = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
@@ -22,10 +24,13 @@ export const Register = (props) => {
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
                 "email": email.current.value,
-                "password": password.current.value
+                "password": password.current.value,
+                "title": title.current.value,
+                "address": address.current.value,
+                "phone_number": phoneNumber.current.value
             }
 
-            return fetch("http://127.0.0.1:8088/register", {
+            return fetch("http://localhost:8000/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -39,7 +44,7 @@ export const Register = (props) => {
                         localStorage.setItem("BF_user_id", res.token)
                         localStorage.setItem("userId", res.userId)
                         localStorage.setItem("isStaff", res.isStaff)
-                        props.history.push("/")
+                        history.push("/")
                     }
                 })
                 .then(history.push("/login"))
@@ -65,6 +70,18 @@ export const Register = (props) => {
                 <fieldset>
                     <label htmlFor="lastName"> Last Name </label>
                     <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="address"> Address </label>
+                    <input ref={address} type="address" name="address" className="form-control" placeholder="address" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="phoneNumber"> Phone Number </label>
+                    <input ref={phoneNumber} type="phone_number" name="phone_number" className="form-control" placeholder="phone Number" required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="title"> Title </label>
+                    <input ref={title} type="title" name="title" className="form-control" placeholder="title" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
