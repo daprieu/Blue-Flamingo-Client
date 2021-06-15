@@ -7,6 +7,8 @@ import { CyanAcidParamsList } from "./parameters/cyanuricAcid/cyanAcidParamsList
 import { ParamNavBar } from "./navParams/paramNavBar"
 import { FilterPressureParametersProvider } from "./parameters/filterPressure/filterPressureParamsProvider"
 import { FilterPressureParamsList } from "./parameters/filterPressure/filterPressureParamsList"
+import { FreeChlorineParametersProvider } from "./parameters/freeChlorine/freeChlorinParamsProvider"
+import { FreeChlorineParamsList } from "./parameters/freeChlorine/freeChlorineParamsList"
 
 
 export const BlueFlamingoViews = () => {
@@ -37,6 +39,12 @@ export const BlueFlamingoViews = () => {
                         <FilterPressureParamsList />
                     </Route>
                 </FilterPressureParametersProvider>
+                <FreeChlorineParametersProvider>
+                    <Route exact path="/params/freechlorine">
+                        <ParamNavBar />
+                        <FreeChlorineParamsList />
+                    </Route>
+                </FreeChlorineParametersProvider>
         </main>
     </>
 }
