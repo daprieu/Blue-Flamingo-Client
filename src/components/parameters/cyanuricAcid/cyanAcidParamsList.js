@@ -14,18 +14,15 @@ export const CyanAcidParamsList = () => {
     const { userId } = useParams()
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(true)
-    const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
         getCyanuricAcidParams()
                 .then(() => setIsLoading(false))
     }, [])
 
-
     // So we wouldn't have to worry about missing ?'s in the return component
     // and avoid the "cannot find label of undefined" error.
     if (isLoading) return (<div>Loading</div>)
-
 
     return (<>
         <div>
