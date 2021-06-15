@@ -15,6 +15,8 @@ import { PHParametersProvider } from "./parameters/pH/pHParamsProvider"
 import { PHParamsList } from "./parameters/pH/pHParamsList"
 import { SalinityParametersProvider } from "./parameters/salinity/salinityParamsProvider"
 import { SalinityParamsList } from "./parameters/salinity/salinityParamsList"
+import { TotalChlorineParametersProvider } from "./parameters/totalChlorine/totalChlorineParamsProvider"
+import { TotalChlorineParamsList } from "./parameters/totalChlorine/totalChlorineParamsList"
 
 
 export const BlueFlamingoViews = () => {
@@ -69,6 +71,12 @@ export const BlueFlamingoViews = () => {
                         <SalinityParamsList />
                     </Route>
                 </SalinityParametersProvider>
+                <TotalChlorineParametersProvider>
+                    <Route exact path="/params/totalchlorine">
+                        <ParamNavBar />
+                        <TotalChlorineParamsList />
+                    </Route>
+                </TotalChlorineParametersProvider>
         </main>
     </>
 }
