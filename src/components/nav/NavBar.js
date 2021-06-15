@@ -17,7 +17,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/">Enter Daily Data</Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/">Daily Logs</Link>
+                <Link className="navbar__link" to="/dailylogs">Daily Logs</Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/">Equipment</Link>
@@ -30,9 +30,6 @@ export const NavBar = () => {
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/">Equipment MGMT</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/">???</Link>
             </li>
             {
                 (localStorage.getItem("BF_user_id") !== null) ?

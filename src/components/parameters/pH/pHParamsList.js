@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
-import { PHParametersContext } from "./pHParamsProvider"
+import { PHParametersContext } from "./PHParamsProvider"
 import { Link, useHistory, useParams } from "react-router-dom"
 import "../params.css"
 
