@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
-import { AlkalinityParametersContext } from "./alkalinityParamsProvider"
+import { FilterPressureParametersContext } from "./filterPressureParamsProvider"
 import { Link, useHistory, useParams } from "react-router-dom"
 import "../params.css"
 
-export const AlkalinityParamsList = () => {
-    const { alkParameters, getAlkalinityParams } = useContext(AlkalinityParametersContext)
-    console.log('parameters: ', alkParameters);
-   
+export const FilterPressureParamsList = () => {
+    const { filterPressureParameters, getFilterPressureParams } = useContext(FilterPressureParametersContext)
     // console.log('posts: ', posts);
     const session_user_id = parseInt(localStorage.getItem("rare_user_id"))
     // const sortedPosts = posts.sort((a, b) => a.publication_date > b.publication_date ? 1 : -1)
@@ -16,10 +14,9 @@ export const AlkalinityParamsList = () => {
     const { userId } = useParams()
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(true)
-    const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
-            getAlkalinityParams()
+        getFilterPressureParams()
                 .then(() => setIsLoading(false))
     }, [])
 
@@ -29,11 +26,11 @@ export const AlkalinityParamsList = () => {
 
     return (<>
         <div>
-            <div>Alkalinity</div>
-            {alkParameters.map(ap =>
-                <div className="post_card" key={ap.id}>
-                    <p><b>Alkalinity ppm: </b>{ap.ppm}</p>
-                    <p><b>Message: </b>{ap.message}</p>
+            <div>Filter Pressure</div>
+            {filterPressureParameters.map(fpp =>
+                <div className="post_card" key={fpp.id}>
+                    <p><b>Filter Psi: </b>{fpp.psi}</p>
+                    <p><b>Message: </b>{fpp.message}</p>
                 </div>
             )}
         </div>

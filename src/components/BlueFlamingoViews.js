@@ -5,6 +5,8 @@ import { AlkalinityParamsList } from "./parameters/alkalinity/alkalinityParamsLi
 import { CyanuricAcidParametersProvider } from "./parameters/cyanuricAcid/cyanAcidParamsProvider"
 import { CyanAcidParamsList } from "./parameters/cyanuricAcid/cyanAcidParamsList"
 import { ParamNavBar } from "./navParams/paramNavBar"
+import { FilterPressureParametersProvider } from "./parameters/filterPressure/filterPressureParamsProvider"
+import { FilterPressureParamsList } from "./parameters/filterPressure/filterPressureParamsList"
 
 
 export const BlueFlamingoViews = () => {
@@ -29,6 +31,12 @@ export const BlueFlamingoViews = () => {
                         <CyanAcidParamsList />
                     </Route>
                 </CyanuricAcidParametersProvider>
+                <FilterPressureParametersProvider>
+                    <Route exact path="/params/filterpressure">
+                        <ParamNavBar />
+                        <FilterPressureParamsList />
+                    </Route>
+                </FilterPressureParametersProvider>
         </main>
     </>
 }
