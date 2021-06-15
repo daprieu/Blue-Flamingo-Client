@@ -9,6 +9,8 @@ import { FilterPressureParametersProvider } from "./parameters/filterPressure/fi
 import { FilterPressureParamsList } from "./parameters/filterPressure/filterPressureParamsList"
 import { FreeChlorineParametersProvider } from "./parameters/freeChlorine/freeChlorinParamsProvider"
 import { FreeChlorineParamsList } from "./parameters/freeChlorine/freeChlorineParamsList"
+import { HardnessParamsList } from "./parameters/hardness/hardnessParamsList"
+import { HardnessParametersProvider } from "./parameters/hardness/hardnessParamsProvider"
 
 
 export const BlueFlamingoViews = () => {
@@ -45,6 +47,12 @@ export const BlueFlamingoViews = () => {
                         <FreeChlorineParamsList />
                     </Route>
                 </FreeChlorineParametersProvider>
+                <HardnessParametersProvider>
+                    <Route exact path="/params/hardness">
+                        <ParamNavBar />
+                        <HardnessParamsList />
+                    </Route>
+                </HardnessParametersProvider>
         </main>
     </>
 }
