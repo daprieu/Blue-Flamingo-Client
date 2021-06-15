@@ -3,7 +3,8 @@ import React, { createContext, useState } from "react"
 export const DailyDataContext = createContext()
 
 export const DailyDataProvider = (props) => {
-    const [dailyData, setDailyData] = useState()
+    const [dailyData, setDailyData] = useState([])
+    console.log('dailyData: ', dailyData);
 
     const getDailyData = () => {
         return fetch(`http://localhost:8000/pumphousedata`, {
@@ -12,7 +13,6 @@ export const DailyDataProvider = (props) => {
             }
         })
         .then(res=>res.json())
-        .then(res=>res.reverse())
         .then(res => {
             setDailyData(res)
             console.log('res: ', res);

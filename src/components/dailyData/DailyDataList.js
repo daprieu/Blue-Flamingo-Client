@@ -5,7 +5,7 @@ import { Link, useHistory, useParams } from "react-router-dom"
 
 export const DailyDataList = () => {
     const { dailyData, getDailyData } = useContext(DailyDataContext)
-    console.log('parameters: ', dailyData);
+    console.log('dailyData: ', dailyData);
    
     // console.log('posts: ', posts);
     const session_user_id = parseInt(localStorage.getItem("rare_user_id"))
@@ -47,24 +47,24 @@ export const DailyDataList = () => {
                     <th scope="col">Filter Baskets Cleaned</th>
                   </tr>
                   </thead>
-            {dailyData.map(dd =>
                 <tbody>
+            {dailyData.map(dd =>
                   <tr>
                     <th scope="row" key={dd.id}>{dd.id}</th>
                     <td>{dd.date}</td>
-                    <td>{dd.pumphouse}</td>
-                    <td>{dd.hardness}</td>
-                    <td>{dd.total_chlorine}</td>
-                    <td>{dd.free_chlorine}</td>
-                    <td>{dd.ph}</td>
-                    <td>{dd.alkalinity}</td>
-                    <td>{dd.cyanuric_acid}</td>
-                    <td>{dd.salinity}</td>
-                    <td>{dd.filter_pressure}</td>
+                    <td>{dd.pumphouse?.name}</td>
+                    <td>{dd.hardness?.ppm}</td>
+                    <td>{dd.total_chlorine?.ppm}</td>
+                    <td>{dd.free_chlorine?.ppm}</td>
+                    <td>{dd.ph?.ph}</td>
+                    <td>{dd.alkalinity?.ppm}</td>
+                    <td>{dd.cyanuric_acid?.ppm}</td>
+                    <td>{dd.salinity?.ppm}</td>
+                    <td>{dd.filter_pressure?.psi}</td>
                     <td>{dd.filter_basket}</td>
                   </tr>
+                    )}
                   </tbody>
-            )}
             </table>
         </div>
     </>)
