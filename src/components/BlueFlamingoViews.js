@@ -11,6 +11,8 @@ import { FreeChlorineParametersProvider } from "./parameters/freeChlorine/freeCh
 import { FreeChlorineParamsList } from "./parameters/freeChlorine/freeChlorineParamsList"
 import { HardnessParamsList } from "./parameters/hardness/hardnessParamsList"
 import { HardnessParametersProvider } from "./parameters/hardness/hardnessParamsProvider"
+import { PHParametersProvider } from "./parameters/pH/pHParamsProvider"
+import { PHParamsList } from "./parameters/pH/pHParamsList"
 
 
 export const BlueFlamingoViews = () => {
@@ -53,6 +55,12 @@ export const BlueFlamingoViews = () => {
                         <HardnessParamsList />
                     </Route>
                 </HardnessParametersProvider>
+                <PHParametersProvider>
+                    <Route exact path="/params/ph">
+                        <ParamNavBar />
+                        <PHParamsList />
+                    </Route>
+                </PHParametersProvider>
         </main>
     </>
 }
