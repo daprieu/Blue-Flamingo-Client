@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
-import { AlkalinityParametersContext } from "./alkalinityParamsProvider"
+import { AlkalinityParametersContext } from "./AlkalinityParamsProvider"
 import { Link, useHistory, useParams } from "react-router-dom"
 import "../params.css"
 

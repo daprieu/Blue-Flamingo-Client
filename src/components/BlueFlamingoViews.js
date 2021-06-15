@@ -1,22 +1,24 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { AlkalinityParametersProvider } from "./parameters/alkalinity/alkalinityParamsProvider"
-import { AlkalinityParamsList } from "./parameters/alkalinity/alkalinityParamsList"
-import { CyanuricAcidParametersProvider } from "./parameters/cyanuricAcid/cyanAcidParamsProvider"
-import { CyanAcidParamsList } from "./parameters/cyanuricAcid/cyanAcidParamsList"
-import { ParamNavBar } from "./navParams/paramNavBar"
-import { FilterPressureParametersProvider } from "./parameters/filterPressure/filterPressureParamsProvider"
-import { FilterPressureParamsList } from "./parameters/filterPressure/filterPressureParamsList"
-import { FreeChlorineParametersProvider } from "./parameters/freeChlorine/freeChlorinParamsProvider"
-import { FreeChlorineParamsList } from "./parameters/freeChlorine/freeChlorineParamsList"
-import { HardnessParamsList } from "./parameters/hardness/hardnessParamsList"
-import { HardnessParametersProvider } from "./parameters/hardness/hardnessParamsProvider"
-import { PHParametersProvider } from "./parameters/pH/pHParamsProvider"
-import { PHParamsList } from "./parameters/pH/pHParamsList"
-import { SalinityParametersProvider } from "./parameters/salinity/salinityParamsProvider"
-import { SalinityParamsList } from "./parameters/salinity/salinityParamsList"
-import { TotalChlorineParametersProvider } from "./parameters/totalChlorine/totalChlorineParamsProvider"
-import { TotalChlorineParamsList } from "./parameters/totalChlorine/totalChlorineParamsList"
+import { AlkalinityParametersProvider } from "./parameters/alkalinity/AlkalinityParamsProvider"
+import { AlkalinityParamsList } from "./parameters/alkalinity/AlkalinityParamsList"
+import { CyanuricAcidParametersProvider } from "./parameters/cyanuricAcid/CyanAcidParamsProvider"
+import { CyanAcidParamsList } from "./parameters/cyanuricAcid/CyanAcidParamsList"
+import { ParamNavBar } from "./navParams/ParamNavBar"
+import { FilterPressureParametersProvider } from "./parameters/filterPressure/FilterPressureParamsProvider"
+import { FilterPressureParamsList } from "./parameters/filterPressure/FilterPressureParamsList"
+import { FreeChlorineParametersProvider } from "./parameters/freeChlorine/FreeChlorinParamsProvider"
+import { FreeChlorineParamsList } from "./parameters/freeChlorine/FreeChlorineParamsList"
+import { HardnessParamsList } from "./parameters/hardness/HardnessParamsList"
+import { HardnessParametersProvider } from "./parameters/hardness/HardnessParamsProvider"
+import { PHParametersProvider } from "./parameters/pH/PHParamsProvider"
+import { PHParamsList } from "./parameters/pH/PHParamsList"
+import { SalinityParametersProvider } from "./parameters/salinity/SalinityParamsProvider"
+import { SalinityParamsList } from "./parameters/salinity/SalinityParamsList"
+import { TotalChlorineParametersProvider } from "./parameters/totalChlorine/TotalChlorineParamsProvider"
+import { TotalChlorineParamsList } from "./parameters/totalChlorine/TotalChlorineParamsList"
+import { DailyDataProvider } from "./dailyData/DailyDataProvider"
+import { DailyDataList } from "./dailyData/DailyDataList"
 
 
 export const BlueFlamingoViews = () => {
@@ -26,6 +28,11 @@ export const BlueFlamingoViews = () => {
             margin: "5rem 2rem",
             lineHeight: "1.75rem"
         }}>
+            <DailyDataProvider>
+                <Route exact path="/dailylogs">
+                    <DailyDataList />
+                </Route>
+            </DailyDataProvider>
             <Route exact path="/params">
                 <ParamNavBar />
             </Route>

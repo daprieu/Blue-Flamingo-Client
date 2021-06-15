@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
-import { SalinityParametersContext } from "./salinityParamsProvider"
+import { SalinityParametersContext } from "./SalinityParamsProvider"
 import { Link, useHistory, useParams } from "react-router-dom"
 import "../params.css"
 

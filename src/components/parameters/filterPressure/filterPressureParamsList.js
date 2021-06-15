@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
-import { FilterPressureParametersContext } from "./filterPressureParamsProvider"
+import { FilterPressureParametersContext } from "./FilterPressureParamsProvider"
 import { Link, useHistory, useParams } from "react-router-dom"
 import "../params.css"
 
