@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
-import { ParametersContext } from "./parameterProvider"
+import { AlkalinityParametersContext } from "./alkalinityParamsProvider"
 import { Link, useHistory, useParams } from "react-router-dom"
-import "./params.css"
+import "../params.css"
 
 export const AlkalinityParamsList = () => {
-    const { parameters, getAlkalinityParams } = useContext(ParametersContext)
-    console.log('parameters: ', parameters);
+    const { alkParameters, getAlkalinityParams } = useContext(AlkalinityParametersContext)
+    console.log('parameters: ', alkParameters);
    
     // console.log('posts: ', posts);
     const session_user_id = parseInt(localStorage.getItem("rare_user_id"))
@@ -23,16 +23,14 @@ export const AlkalinityParamsList = () => {
                 .then(() => setIsLoading(false))
     }, [])
 
-
     // So we wouldn't have to worry about missing ?'s in the return component
     // and avoid the "cannot find label of undefined" error.
     if (isLoading) return (<div>Loading</div>)
 
-
     return (<>
         <div>
             <div>Alkalinity</div>
-            {parameters.map(ap =>
+            {alkParameters.map(ap =>
                 <div className="post_card" key={ap.id}>
                     <p><b>alkalinity ppm: </b>{ap.ppm}</p>
                     <p><b>Message: </b>{ap.message}</p>

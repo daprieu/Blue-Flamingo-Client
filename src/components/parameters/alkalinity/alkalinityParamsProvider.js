@@ -1,9 +1,9 @@
 import React, { createContext, useState } from "react"
 
-export const ParametersContext = createContext()
+export const AlkalinityParametersContext = createContext()
 
-export const ParametersProvider = (props) => {
-    const [parameters, setParameters] = useState()
+export const AlkalinityParametersProvider = (props) => {
+    const [alkParameters, setAlkParameters] = useState()
 
     const getAlkalinityParams = () => {
         return fetch(`http://localhost:8000/alkalinity`, {
@@ -14,17 +14,17 @@ export const ParametersProvider = (props) => {
         .then(res=>res.json())
         .then(res=>res.reverse())
         .then(res => {
-            setParameters(res)
+            setAlkParameters(res)
             console.log('res: ', res);
             return res
         })
     }
 
     return(
-        <ParametersContext.Provider value={{
-            parameters, getAlkalinityParams
+        <AlkalinityParametersContext.Provider value={{
+            alkParameters, getAlkalinityParams
         }}>
             {props.children}
-        </ParametersContext.Provider>
+        </AlkalinityParametersContext.Provider>
     )
 }

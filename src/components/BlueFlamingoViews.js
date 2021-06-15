@@ -1,8 +1,10 @@
 import React from "react"
 import { Route } from "react-router-dom"
-import { ParametersProvider } from "./parameters/parameterProvider"
-import { AlkalinityParamsList } from "./parameters/alkalinityParamsList"
-import { ParamNavBar } from "./paramNav/paramNavBar"
+import { AlkalinityParametersProvider } from "./parameters/alkalinity/alkalinityParamsProvider"
+import { AlkalinityParamsList } from "./parameters/alkalinity/alkalinityParamsList"
+import { CyanuricAcidParametersProvider } from "./parameters/cyanuricAcid/cyanAcidParamsProvider"
+import { CyanAcidParamsList } from "./parameters/cyanuricAcid/cyanAcidParamsList"
+import { ParamNavBar } from "./navParams/paramNavBar"
 
 
 export const BlueFlamingoViews = () => {
@@ -15,12 +17,18 @@ export const BlueFlamingoViews = () => {
             <Route exact path="/params">
                 <ParamNavBar />
             </Route>
-                <ParametersProvider>
+                <AlkalinityParametersProvider>
                     <Route exact path="/params/alkalinity">
                         <ParamNavBar />
                         <AlkalinityParamsList />
                     </Route>
-                </ParametersProvider>
+                </AlkalinityParametersProvider>
+                <CyanuricAcidParametersProvider>
+                    <Route exact path="/params/cyanuricacid">
+                        <ParamNavBar />
+                        <CyanAcidParamsList />
+                    </Route>
+                </CyanuricAcidParametersProvider>
         </main>
     </>
 }
