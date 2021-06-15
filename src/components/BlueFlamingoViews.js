@@ -13,6 +13,8 @@ import { HardnessParamsList } from "./parameters/hardness/hardnessParamsList"
 import { HardnessParametersProvider } from "./parameters/hardness/hardnessParamsProvider"
 import { PHParametersProvider } from "./parameters/pH/pHParamsProvider"
 import { PHParamsList } from "./parameters/pH/pHParamsList"
+import { SalinityParametersProvider } from "./parameters/salinity/salinityParamsProvider"
+import { SalinityParamsList } from "./parameters/salinity/salinityParamsList"
 
 
 export const BlueFlamingoViews = () => {
@@ -61,6 +63,12 @@ export const BlueFlamingoViews = () => {
                         <PHParamsList />
                     </Route>
                 </PHParametersProvider>
+                <SalinityParametersProvider>
+                    <Route exact path="/params/salinity">
+                        <ParamNavBar />
+                        <SalinityParamsList />
+                    </Route>
+                </SalinityParametersProvider>
         </main>
     </>
 }
