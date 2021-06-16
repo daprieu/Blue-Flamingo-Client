@@ -19,6 +19,8 @@ import { TotalChlorineParametersProvider } from "./parameters/totalChlorine/Tota
 import { TotalChlorineParamsList } from "./parameters/totalChlorine/TotalChlorineParamsList"
 import { DailyDataProvider } from "./dailyData/DailyDataProvider"
 import { DailyDataList } from "./dailyData/DailyDataList"
+import { PumphouseProvider } from "./pumphouse/PumphouseProvider"
+import { PumphouseList } from "./pumphouse/PumphouseList"
 
 
 export const BlueFlamingoViews = () => {
@@ -33,6 +35,11 @@ export const BlueFlamingoViews = () => {
                     <DailyDataList />
                 </Route>
             </DailyDataProvider>
+            <PumphouseProvider>
+                <Route exact path="/pumphouse">
+                    <PumphouseList />
+                </Route>
+            </PumphouseProvider>
             <Route exact path="/params">
                 <ParamNavBar />
             </Route>
