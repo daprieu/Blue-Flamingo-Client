@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom"
 import { AlkalinityParametersContext } from "./AlkalinityParamsProvider"
 
 export const AlkalinityForm = () => {
-    const { addAlkalinityParam, getAlkalinityById, editAlkalinityById } = useContext(AlkalinityParametersContext)
+    const { addAlkalinityParam, editAlkalinityParamById, getAlkalinityParamById } = useContext(AlkalinityParametersContext)
     const session_user_id = parseInt(localStorage.getItem("userId"))
     const [alkalinity, setAlkalinity] = useState({
         user: session_user_id,
@@ -12,7 +12,7 @@ export const AlkalinityForm = () => {
     })
 
     const history = useHistory()
-    const { alkalinityId }  = useParams()
+    const { paramId }  = useParams()
     const [isLoading, setIsLoading] = useState(true)
 
 
@@ -28,13 +28,17 @@ export const AlkalinityForm = () => {
 
     const handleSaveAlkalinity = (event) => {
         event.preventDefault()
-        if(alkalinityId) {
-            editAlkalinityById(alkalinity)
+        if(paramId > 0) {
+            editAlkalinityParamById({
+                id: alkalinity.id,
+                ppm: alkalinity.ppm,
+                message: alkalinity.message
+            })
                 .then(history.push("/params/alkalinity"))
         } else {
             addAlkalinityParam({
                 ppm: alkalinity.ppm,
-              message: alkalinity.message,
+                message: alkalinity.message
             })
                 .then(history.push("/params/alkalinity"))
 
@@ -42,9 +46,9 @@ export const AlkalinityForm = () => {
     }
 
     useEffect(() => {
-        if (alkalinityId) {
+        if (paramId) {
 
-            getAlkalinityById(alkalinityId).then(setAlkalinity)
+            getAlkalinityParamById(paramId).then(setAlkalinity)
             setIsLoading(false)
         } else {
             setIsLoading(false)
@@ -54,32 +58,32 @@ export const AlkalinityForm = () => {
     return (
         <>
             <form onSubmit={handleSaveAlkalinity}>
-                { alkalinityId ? <h2>Edit Alkalinity</h2> : <h2>Add Alkalinity</h2> }
-                {/* { alkalinityId ? <div>{ alkalinity.ppm }</div> : <></> }
-                { alkalinityId ? <div>{ alkalinity.message }</div> : <></> } */}
+                { paramId ? <h2>Edit Alkalinity</h2> : <h2>Add Alkalinity</h2> }
+                {/* { paramId ? <div>{ alkalinity.ppm }</div> : <></> }
+                { paramId ? <div>{ alkalinity.message }</div> : <></> } */}
                 <fieldset>
                     <div>
-                        <label htmlFor="label">{ alkalinityId ? "Edit" : "New" } Alkalinity ppm: </label>
+                        <label htmlFor="label">{ paramId ? "Edit" : "New" } Alkalinity ppm: </label>
                         <input type="text" id="ppm" onChange={handleControlledInputChange} 
                             required 
                             autoFocus 
                             value={alkalinity.ppm} 
-                            placeholder={ alkalinityId ? "Edit Alkalinity ppm" : "New Alkalinity ppm" }/>
+                            placeholder={ paramId ? "Edit Alkalinity ppm" : "New Alkalinity ppm" }/>
                     </div>
                     </fieldset>
                     <fieldset>
                     <div>
-                        <label htmlFor="label">{ alkalinityId ? "Edit" : "New" } Alkalinity message: </label>
+                        <label htmlFor="label">{ paramId ? "Edit" : "New" } Alkalinity message: </label>
                         <input type="text" id="message" onChange={handleControlledInputChange} 
                             required 
                             autoFocus 
                             value={alkalinity.message} 
-                            placeholder={ alkalinityId ? "Edit Alkalinity message" : "New Alkalinity message" }/>
+                            placeholder={ paramId ? "Edit Alkalinity message" : "New Alkalinity message" }/>
                     </div>
                 </fieldset>
                 <button type="submit"
                     disabled={isLoading}>
-                    { alkalinityId ? "Update" : "Save" }
+                    { paramId ? "Update" : "Save" }
                 </button>
             </form>
         </>

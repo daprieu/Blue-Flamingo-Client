@@ -63,6 +63,9 @@ export const BlueFlamingoViews = () => {
                                             <Route exact path="/params/alkalinity/create">
                                                 <AlkalinityForm />
                                             </Route>
+                                            <Route exact path="/params/alkalinity/edit/:paramId(\d+)">
+                                                <AlkalinityForm />
+                                            </Route>
                                             <Route exact path="/params/cyanuricacid">
                                                 <ParamNavBar />
                                                 <CyanAcidParamsList />

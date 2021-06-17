@@ -40,10 +40,29 @@ export const AlkalinityParametersProvider = (props) => {
         })
             .then(getAlkalinityParams)
     }
+    const getAlkalinityParamById = id => {
+        return fetch(`http://localhost:8000/alkalinity/${id}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
+            }
+        })
+            .then(res => res.json())
+    }
+    const editAlkalinityParamById = param => {
+        return fetch(`http://localhost:8000/alkalinity/${param.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
+            },
+            body: JSON.stringify(param)
+        })
+            .then(getAlkalinityParams)
+    }
 
     return(
         <AlkalinityParametersContext.Provider value={{
-            alkParameters, getAlkalinityParams, addAlkalinityParam, deleteAlkalinityParam
+            alkParameters, getAlkalinityParams, addAlkalinityParam, deleteAlkalinityParam, editAlkalinityParamById, getAlkalinityParamById
         }}>
             {props.children}
         </AlkalinityParametersContext.Provider>

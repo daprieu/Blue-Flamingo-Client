@@ -45,6 +45,11 @@ export const AlkalinityParamsList = () => {
                         e.preventDefault()
                         handleDelete(ap.id)
                     }}>Delete</button>
+                    <button >
+                        <Link to={{
+                            pathname: `/params/alkalinity/edit/${ap.id}`
+                        }}>Edit</Link>
+                    </button>
                 </div>
                 )}
         </div>
