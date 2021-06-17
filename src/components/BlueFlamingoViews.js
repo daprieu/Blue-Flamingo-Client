@@ -28,6 +28,7 @@ import { FilterPressureForm } from "./parameters/filterPressure/FilterPressurePa
 import { FreeChlorineForm } from "./parameters/freeChlorine/FreeChlorineParamForm"
 import { HardnessForm } from "./parameters/hardness/HardnessParamForm"
 import { PHForm } from "./parameters/pH/PHParamsForm"
+import { SalinityForm } from "./parameters/salinity/SalinityParamForm"
 
 
 export const BlueFlamingoViews = () => {
@@ -124,6 +125,12 @@ export const BlueFlamingoViews = () => {
                                             <Route exact path="/params/salinity">
                                                 <ParamNavBar />
                                                 <SalinityParamsList />
+                                            </Route>
+                                            <Route exact path="/params/salinity/create">
+                                                <SalinityForm />
+                                            </Route>
+                                            <Route exact path="/params/salinity/edit/:paramId(\d+)">
+                                                <SalinityForm />
                                             </Route>
                                             <Route exact path="/params/totalchlorine">
                                                 <ParamNavBar />
