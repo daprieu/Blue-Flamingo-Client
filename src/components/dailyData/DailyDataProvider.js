@@ -19,10 +19,22 @@ export const DailyDataProvider = (props) => {
             return res
         })
     }
+    const addDailyData = dailyDataObj => {
+        return fetch("http://localhost:8000/pumphousedata", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
+            },
+            body: JSON.stringify(dailyDataObj)
+        })
+            .then(response => response.json())
+            .then(getDailyData)
+    }
 
     return(
         <DailyDataContext.Provider value={{
-            dailyData, getDailyData
+            dailyData, getDailyData, addDailyData
         }}>
             {props.children}
         </DailyDataContext.Provider>
