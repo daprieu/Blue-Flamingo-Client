@@ -33,7 +33,7 @@ export const SalinityParamsList = () => {
 
     return (<>
         <div>
-            <div>Filter Pressure</div>
+            <div>Salinity</div>
             {salinityParameters.map(sp =>
                 <div className="post_card" key={sp.id}>
                     <p><b>Salinity: </b>{sp.ppm}</p>
