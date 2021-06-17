@@ -25,6 +25,7 @@ import { DailyDataForm } from "./dailyData/DailyDataForm"
 import { AlkalinityForm } from "./parameters/alkalinity/AlkalinityParamForm"
 import { CyanuricAcidForm } from "./parameters/cyanuricAcid/CyanAcidParamForm"
 import { FilterPressureForm } from "./parameters/filterPressure/FilterPressureParamForm"
+import { FreeChlorineForm } from "./parameters/freeChlorine/FreeChlorineParamForm"
 
 
 export const BlueFlamingoViews = () => {
@@ -91,6 +92,12 @@ export const BlueFlamingoViews = () => {
                                             <Route exact path="/params/freechlorine">
                                                 <ParamNavBar />
                                                 <FreeChlorineParamsList />
+                                            </Route>
+                                            <Route exact path="/params/freechlorine/create">
+                                                <FreeChlorineForm />
+                                            </Route>
+                                            <Route exact path="/params/freechlorine/edit/:paramId(\d+)">
+                                                <FreeChlorineForm />
                                             </Route>
                                             <Route exact path="/params/hardness">
                                                 <ParamNavBar />

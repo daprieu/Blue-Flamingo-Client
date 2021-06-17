@@ -17,7 +17,7 @@ export const FilterPressureParamsList = () => {
 
     useEffect(() => {
         getFilterPressureParams()
-                .then(() => setIsLoading(false))
+            .then(() => setIsLoading(false))
     }, [])
 
     const handleDelete = (id) => {
@@ -38,22 +38,22 @@ export const FilterPressureParamsList = () => {
                 <div className="post_card" key={fpp.id}>
                     <p><b>Filter Psi: </b>{fpp.psi}</p>
                     <p><b>Message: </b>{fpp.message}</p>
-            <button type="button" id="deleteFilterPressureParam" onClick={(e) => {
-                e.preventDefault()
-                handleDelete(fpp.id)
-            }}>Delete</button>
-            <button >
-                <Link to={{
-                    pathname: `/params/filterpressure/edit/${fpp.id}`
-                }}>Edit</Link>
-            </button>
+                    <button type="button" id="deleteFilterPressureParam" onClick={(e) => {
+                        e.preventDefault()
+                        handleDelete(fpp.id)
+                    }}>Delete</button>
+                    <button >
+                        <Link to={{
+                            pathname: `/params/filterpressure/edit/${fpp.id}`
+                        }}>Edit</Link>
+                    </button>
                 </div>
             )}
-    <Link to="/params/filterpressure/create">
-  <button className="createTag" type="button">
-    Create Filter Pressure
-  </button>
-</Link>
+            <Link to="/params/filterpressure/create">
+                <button className="createTag" type="button">
+                    Create Filter Pressure
+                </button> 
+            </Link>
         </div>
     </>)
 }
