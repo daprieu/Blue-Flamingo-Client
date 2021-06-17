@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom"
-import { FreeChlorineParametersContext } from "./FreeChlorineParamsProvider"
+import { HardnessParametersContext } from "./HardnessParamsProvider"
 
 
-export const FreeChlorineForm = () => {
-    const { addFreeChlorineParam, editFreeChlorineParamById, getFreeChlorineParamById } = useContext(FreeChlorineParametersContext)
+export const HardnessForm = () => {
+    const { addHardnessParam, editHardnessParamById, getHardnessParamById } = useContext(HardnessParametersContext)
     const session_user_id = parseInt(localStorage.getItem("userId"))
-    const [freeChlorine, setFreeChlorine] = useState({
+    const [hardness, setHardness] = useState({
         user: session_user_id,
         ppm: "",
         message: ""
@@ -19,28 +19,28 @@ export const FreeChlorineForm = () => {
 
 
     const handleControlledInputChange = (event) => {
-        const newFreeChlorine= { ...freeChlorine }
+        const newHardness= { ...hardness }
 
-        newFreeChlorine[event.target.id] = event.target.value
+        newHardness[event.target.id] = event.target.value
 
-        setFreeChlorine(newFreeChlorine)
+        setHardness(newHardness)
     }
 
-    const handleSaveFreeChlorine= (event) => {
+    const handleSaveHardness= (event) => {
         event.preventDefault()
         if(paramId > 0) {
-            editFreeChlorineParamById({
-                id: freeChlorine.id,
-                ppm: freeChlorine.ppm,
-                message: freeChlorine.message
+            editHardnessParamById({
+                id: hardness.id,
+                ppm: hardness.ppm,
+                message: hardness.message
             })
-                .then(history.push("/params/freechlorine"))
+                .then(history.push("/params/hardness"))
         } else {
-            addFreeChlorineParam({
-                ppm: freeChlorine.ppm,
-                message: freeChlorine.message
+            addHardnessParam({
+                ppm: hardness.ppm,
+                message: hardness.message
             })
-                .then(history.push("/params/freechlorine"))
+                .then(history.push("/params/hardness"))
 
         }
     }
@@ -48,7 +48,7 @@ export const FreeChlorineForm = () => {
     useEffect(() => {
         if (paramId) {
 
-            getFreeChlorineParamById(paramId).then(setFreeChlorine)
+            getHardnessParamById(paramId).then(setHardness)
             setIsLoading(false)
         } else {
             setIsLoading(false)
@@ -57,17 +57,17 @@ export const FreeChlorineForm = () => {
 
     return (
         <>
-            <form onSubmit={handleSaveFreeChlorine}>
-                { paramId ? <h2>Edit FreeChlorine</h2> : <h2>Add FreeChlorine</h2> }
-                {/* { paramId ? <div>{ FreeChlorine.ppm }</div> : <></> }
-                { paramId ? <div>{ FreeChlorine.message }</div> : <></> } */}
+            <form onSubmit={handleSaveHardness}>
+                { paramId ? <h2>Edit Hardness</h2> : <h2>Add Hardness</h2> }
+                {/* { paramId ? <div>{ Hardness.ppm }</div> : <></> }
+                { paramId ? <div>{ Hardness.message }</div> : <></> } */}
                 <fieldset>
                     <div>
                         <label htmlFor="label">{ paramId ? "Edit" : "New" } Filter Pressure ppm: </label>
                         <input type="text" id="ppm" onChange={handleControlledInputChange} 
                             required 
                             autoFocus 
-                            value={freeChlorine.ppm} 
+                            value={hardness.ppm} 
                             placeholder={ paramId ? "Edit Filter Pressure ppm" : "New Filter Pressure ppm" }/>
                     </div>
                     </fieldset>
@@ -77,7 +77,7 @@ export const FreeChlorineForm = () => {
                         <input type="text" id="message" onChange={handleControlledInputChange} 
                             required 
                             autoFocus 
-                            value={freeChlorine.message} 
+                            value={hardness.message} 
                             placeholder={ paramId ? "Edit Filter Pressure message" : "New Filter Pressure message" }/>
                     </div>
                 </fieldset>
