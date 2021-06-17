@@ -19,10 +19,50 @@ export const FreeChlorineParametersProvider = (props) => {
             return res
         })
     }
+    const addFreeChlorineParam = paramObj => {
+        return fetch("http://localhost:8000/freechlorine", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
+            },
+            body: JSON.stringify(paramObj)
+        })
+            .then(response => response.json())
+            .then(getFreeChlorineParams)
+    }
+    const deleteFreeChlorineParam = (id) => {
+        return fetch(`http://localhost:8000/freechlorine/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
+            },
+        })
+            .then(getFreeChlorineParams)
+    }
+    const getFreeChlorineParamById = id => {
+        return fetch(`http://localhost:8000/freechlorine/${id}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
+            }
+        })
+            .then(res => res.json())
+    }
+    const editFreeChlorineParamById = param => {
+        return fetch(`http://localhost:8000/freechlorine/${param.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
+            },
+            body: JSON.stringify(param)
+        })
+            .then(getFreeChlorineParams)
+    }
 
     return(
         <FreeChlorineParametersContext.Provider value={{
-            freeChlorineParameters, getFreeChlorineParams
+            freeChlorineParameters, getFreeChlorineParams, addFreeChlorineParam, deleteFreeChlorineParam, getFreeChlorineParamById, editFreeChlorineParamById
         }}>
             {props.children}
         </FreeChlorineParametersContext.Provider>
