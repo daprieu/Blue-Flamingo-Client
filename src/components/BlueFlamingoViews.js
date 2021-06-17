@@ -23,6 +23,7 @@ import { PumphouseProvider } from "./pumphouse/PumphouseProvider"
 import { PumphouseList } from "./pumphouse/PumphouseList"
 import { DailyDataForm } from "./dailyData/DailyDataForm"
 import { AlkalinityForm } from "./parameters/alkalinity/AlkalinityParamForm"
+import { CyanuricAcidForm } from "./parameters/cyanuricAcid/CyanAcidParamForm"
 
 
 export const BlueFlamingoViews = () => {
@@ -69,6 +70,12 @@ export const BlueFlamingoViews = () => {
                                             <Route exact path="/params/cyanuricacid">
                                                 <ParamNavBar />
                                                 <CyanAcidParamsList />
+                                            </Route>
+                                            <Route exact path="/params/cyanuricacid/create">
+                                                <CyanuricAcidForm />
+                                            </Route>
+                                            <Route exact path="/params/cyanuricacid/edit/:paramId(\d+)">
+                                                <CyanuricAcidForm />
                                             </Route>
                                             <Route exact path="/params/filterpressure">
                                                 <ParamNavBar />
