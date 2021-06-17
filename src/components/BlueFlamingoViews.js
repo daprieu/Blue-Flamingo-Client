@@ -21,6 +21,7 @@ import { DailyDataProvider } from "./dailyData/DailyDataProvider"
 import { DailyDataList } from "./dailyData/DailyDataList"
 import { PumphouseProvider } from "./pumphouse/PumphouseProvider"
 import { PumphouseList } from "./pumphouse/PumphouseList"
+import { DailyDataForm } from "./dailyData/DailyDataForm"
 
 
 export const BlueFlamingoViews = () => {
@@ -30,67 +31,70 @@ export const BlueFlamingoViews = () => {
             margin: "5rem 2rem",
             lineHeight: "1.75rem"
         }}>
-            <DailyDataProvider>
-                <Route exact path="/dailylogs">
-                    <DailyDataList />
-                </Route>
-            </DailyDataProvider>
-            <PumphouseProvider>
-                <Route exact path="/pumphouse">
-                    <PumphouseList />
-                </Route>
-            </PumphouseProvider>
-            <Route exact path="/params">
-                <ParamNavBar />
-            </Route>
-                <AlkalinityParametersProvider>
-                    <Route exact path="/params/alkalinity">
-                        <ParamNavBar />
-                        <AlkalinityParamsList />
-                    </Route>
-                </AlkalinityParametersProvider>
-                <CyanuricAcidParametersProvider>
-                    <Route exact path="/params/cyanuricacid">
-                        <ParamNavBar />
-                        <CyanAcidParamsList />
-                    </Route>
-                </CyanuricAcidParametersProvider>
-                <FilterPressureParametersProvider>
-                    <Route exact path="/params/filterpressure">
-                        <ParamNavBar />
-                        <FilterPressureParamsList />
-                    </Route>
-                </FilterPressureParametersProvider>
-                <FreeChlorineParametersProvider>
-                    <Route exact path="/params/freechlorine">
-                        <ParamNavBar />
-                        <FreeChlorineParamsList />
-                    </Route>
-                </FreeChlorineParametersProvider>
-                <HardnessParametersProvider>
-                    <Route exact path="/params/hardness">
-                        <ParamNavBar />
-                        <HardnessParamsList />
-                    </Route>
-                </HardnessParametersProvider>
-                <PHParametersProvider>
-                    <Route exact path="/params/ph">
-                        <ParamNavBar />
-                        <PHParamsList />
-                    </Route>
-                </PHParametersProvider>
-                <SalinityParametersProvider>
-                    <Route exact path="/params/salinity">
-                        <ParamNavBar />
-                        <SalinityParamsList />
-                    </Route>
-                </SalinityParametersProvider>
+            <HardnessParametersProvider>
                 <TotalChlorineParametersProvider>
-                    <Route exact path="/params/totalchlorine">
-                        <ParamNavBar />
-                        <TotalChlorineParamsList />
-                    </Route>
+                    <FreeChlorineParametersProvider>
+                        <PHParametersProvider>
+                            <AlkalinityParametersProvider>
+                                <CyanuricAcidParametersProvider>
+                                    <SalinityParametersProvider>
+                                        <FilterPressureParametersProvider>
+                                            <PumphouseProvider>
+                                                <DailyDataProvider>
+                                                    <Route path="/enter_daily_data">
+                                                        <DailyDataForm />
+                                                    </Route>
+                                                    <Route exact path="/daily_logs">
+                                                        <DailyDataList />
+                                                    </Route>
+                                                </DailyDataProvider>
+                                                <Route exact path="/pumphouse">
+                                                    <PumphouseList />
+                                                </Route>
+                                            </PumphouseProvider>
+                                            <Route exact path="/params">
+                                                <ParamNavBar />
+                                            </Route>
+                                            <Route exact path="/params/alkalinity">
+                                                <ParamNavBar />
+                                                <AlkalinityParamsList />
+                                            </Route>
+                                            <Route exact path="/params/cyanuricacid">
+                                                <ParamNavBar />
+                                                <CyanAcidParamsList />
+                                            </Route>
+                                            <Route exact path="/params/filterpressure">
+                                                <ParamNavBar />
+                                                <FilterPressureParamsList />
+                                            </Route>
+                                            <Route exact path="/params/freechlorine">
+                                                <ParamNavBar />
+                                                <FreeChlorineParamsList />
+                                            </Route>
+                                            <Route exact path="/params/hardness">
+                                                <ParamNavBar />
+                                                <HardnessParamsList />
+                                            </Route>
+                                            <Route exact path="/params/ph">
+                                                <ParamNavBar />
+                                                <PHParamsList />
+                                            </Route>
+                                            <Route exact path="/params/salinity">
+                                                <ParamNavBar />
+                                                <SalinityParamsList />
+                                            </Route>
+                                            <Route exact path="/params/totalchlorine">
+                                                <ParamNavBar />
+                                                <TotalChlorineParamsList />
+                                            </Route>
+                                        </FilterPressureParametersProvider>
+                                    </SalinityParametersProvider>
+                                </CyanuricAcidParametersProvider>
+                            </AlkalinityParametersProvider>
+                        </PHParametersProvider>
+                    </FreeChlorineParametersProvider>
                 </TotalChlorineParametersProvider>
+            </HardnessParametersProvider>
         </main>
     </>
 }

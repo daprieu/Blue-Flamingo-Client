@@ -14,10 +14,12 @@ export const NavBar = () => {
                 <img className="navbar__logo" src={Logo} />
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/">Enter Daily Data</Link>
+                <Link className="navbar__link" type="link" data-toggle="modal" data-target="#exampleModal" to="/enter_daily_data">
+                Enter Daily Data
+                </Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/dailylogs">Daily Logs</Link>
+                <Link className="navbar__link" to="/daily_logs">Daily Logs</Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/">Equipment</Link>
