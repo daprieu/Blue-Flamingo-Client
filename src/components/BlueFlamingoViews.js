@@ -22,6 +22,7 @@ import { DailyDataList } from "./dailyData/DailyDataList"
 import { PumphouseProvider } from "./pumphouse/PumphouseProvider"
 import { PumphouseList } from "./pumphouse/PumphouseList"
 import { DailyDataForm } from "./dailyData/DailyDataForm"
+import { AlkalinityForm } from "./parameters/alkalinity/AlkalinityParamForm"
 
 
 export const BlueFlamingoViews = () => {
@@ -58,6 +59,9 @@ export const BlueFlamingoViews = () => {
                                             <Route exact path="/params/alkalinity">
                                                 <ParamNavBar />
                                                 <AlkalinityParamsList />
+                                            </Route>
+                                            <Route exact path="/params/alkalinity/create">
+                                                <AlkalinityForm />
                                             </Route>
                                             <Route exact path="/params/cyanuricacid">
                                                 <ParamNavBar />
