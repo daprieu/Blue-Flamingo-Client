@@ -27,6 +27,7 @@ import { CyanuricAcidForm } from "./parameters/cyanuricAcid/CyanAcidParamForm"
 import { FilterPressureForm } from "./parameters/filterPressure/FilterPressureParamForm"
 import { FreeChlorineForm } from "./parameters/freeChlorine/FreeChlorineParamForm"
 import { HardnessForm } from "./parameters/hardness/HardnessParamForm"
+import { PHForm } from "./parameters/pH/PHParamsForm"
 
 
 export const BlueFlamingoViews = () => {
@@ -113,6 +114,12 @@ export const BlueFlamingoViews = () => {
                                             <Route exact path="/params/ph">
                                                 <ParamNavBar />
                                                 <PHParamsList />
+                                            </Route>
+                                            <Route exact path="/params/ph/create">
+                                                <PHForm />
+                                            </Route>
+                                            <Route exact path="/params/ph/edit/:paramId(\d+)">
+                                                <PHForm />
                                             </Route>
                                             <Route exact path="/params/salinity">
                                                 <ParamNavBar />
