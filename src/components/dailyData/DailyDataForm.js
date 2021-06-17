@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { PumphouseContext } from "../pumphouse/PumphouseProvider";
 import { HardnessParametersContext } from "../parameters/hardness/HardnessParamsProvider";
 import { TotalChlorineParametersContext } from "../parameters/totalChlorine/TotalChlorineParamsProvider";
-import { FreeChlorineParametersContext } from "../parameters/freeChlorine/FreeChlorinParamsProvider";
+import { FreeChlorineParametersContext } from "../parameters/freeChlorine/FreeChlorineParamsProvider";
 import { PHParametersContext } from "../parameters/pH/PHParamsProvider";
 import { AlkalinityParametersContext } from "../parameters/alkalinity/AlkalinityParamsProvider";
 import { CyanuricAcidParametersContext } from "../parameters/cyanuricAcid/CyanAcidParamsProvider";

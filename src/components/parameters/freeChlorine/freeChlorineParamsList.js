@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
-import { FreeChlorineParametersContext } from "./FreeChlorinParamsProvider"
+import { FreeChlorineParametersContext } from "./FreeChlorineParamsProvider"
 import { Link, useHistory, useParams } from "react-router-dom"
 import "../params.css"
 

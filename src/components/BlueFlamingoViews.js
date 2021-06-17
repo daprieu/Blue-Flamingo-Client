@@ -7,7 +7,7 @@ import { CyanAcidParamsList } from "./parameters/cyanuricAcid/CyanAcidParamsList
 import { ParamNavBar } from "./navParams/ParamNavBar"
 import { FilterPressureParametersProvider } from "./parameters/filterPressure/FilterPressureParamsProvider"
 import { FilterPressureParamsList } from "./parameters/filterPressure/FilterPressureParamsList"
-import { FreeChlorineParametersProvider } from "./parameters/freeChlorine/FreeChlorinParamsProvider"
+import { FreeChlorineParametersProvider } from "./parameters/freeChlorine/FreeChlorineParamsProvider"
 import { FreeChlorineParamsList } from "./parameters/freeChlorine/FreeChlorineParamsList"
 import { HardnessParamsList } from "./parameters/hardness/HardnessParamsList"
 import { HardnessParametersProvider } from "./parameters/hardness/HardnessParamsProvider"
@@ -26,6 +26,7 @@ import { AlkalinityForm } from "./parameters/alkalinity/AlkalinityParamForm"
 import { CyanuricAcidForm } from "./parameters/cyanuricAcid/CyanAcidParamForm"
 import { FilterPressureForm } from "./parameters/filterPressure/FilterPressureParamForm"
 import { FreeChlorineForm } from "./parameters/freeChlorine/FreeChlorineParamForm"
+import { HardnessForm } from "./parameters/hardness/HardnessParamForm"
 
 
 export const BlueFlamingoViews = () => {
@@ -102,6 +103,12 @@ export const BlueFlamingoViews = () => {
                                             <Route exact path="/params/hardness">
                                                 <ParamNavBar />
                                                 <HardnessParamsList />
+                                            </Route>
+                                            <Route exact path="/params/hardness/create">
+                                                <HardnessForm />
+                                            </Route>
+                                            <Route exact path="/params/hardness/edit/:paramId(\d+)">
+                                                <HardnessForm />
                                             </Route>
                                             <Route exact path="/params/ph">
                                                 <ParamNavBar />
