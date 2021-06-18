@@ -14,13 +14,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import { getDefaultNormalizer } from "@testing-library/dom";
 // import VolumeDown from '@material-ui/icons/VolumeDown';
 // import VolumeUp from '@material-ui/icons/VolumeUp';
 
 
 
 export const DailyDataForm = () => {
-    const { addDailyData, getDailyData } = useContext(DailyDataContext)
+    const { addDailyData, getDailyDataById, editDailyDataById } = useContext(DailyDataContext)
     const { pumphouse, getPumphouse } = useContext(PumphouseContext)
     const { hardnessParameters, getHardnessParams } = useContext(HardnessParametersContext)
     const { totalChlorineParameters, getTotalChlorineParams } = useContext(TotalChlorineParametersContext)
@@ -30,31 +31,12 @@ export const DailyDataForm = () => {
     const { cyanAcidParameters, getCyanuricAcidParams } = useContext(CyanuricAcidParametersContext)
     const { salinityParameters, getSalinityParams } = useContext(SalinityParametersContext)
     const { filterPressureParameters, getFilterPressureParams } = useContext(FilterPressureParametersContext)
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            width: 300,
-        },
-        margin: {
-            height: theme.spacing(3),
-        },
-    }));
-
-    const marks = hardnessParameters
-    console.log('marks: ', marks);
-
-    const valuetext = (ppm) => {
-        return `${ppm}°C`
-    }
-    const valueLabelFormat = (ppm) => {
-        return hardnessParameters?.findIndex((mark) => mark.ppm === ppm) + 1;
-    }
-    const classes = useStyles();
-
 
     const session_user_id = parseInt(localStorage.getItem("userId"))
 
 
     const [dailyData, setDailyData] = useState({
+        
         user: session_user_id,
         pumphouse: null,
         hardness: null,
@@ -74,10 +56,10 @@ export const DailyDataForm = () => {
         filter_pressure_note: "",
         filter_basket: false
     })
-
-
+console.log('dailyData: ', dailyData);
     const history = useHistory();
-    const { dailyDataId } = useParams();
+    const { dataId } = useParams();
+
     const userId = localStorage.getItem("userId")
 
 
@@ -92,13 +74,33 @@ export const DailyDataForm = () => {
         setDailyData(newDailyData)
     }
 
-    const handleCleanBaskets = () => {
-        return dailyData.filter_basket = true
-    }
 
     const handleSaveDailyData = () => {
-        // if (dailyData.filter_basket === false) {
-        //     window.alert("Please clean baskets")
+        if (dailyData.filter_basket === false) {
+            window.alert("Please clean baskets")
+        } if (dataId > 0) {
+            editDailyDataById({
+                id: parseInt(dataId),
+                pumphouse: dailyData.pumphouse,
+                hardness: dailyData.hardness,
+                hardness_note: dailyData.hardness_note,
+                total_chlorine: dailyData.total_chlorine,
+                free_chlorine: dailyData.free_chlorine,
+                chlorine_note: dailyData.chlorine_note,
+                ph: dailyData.ph,
+                ph_note: dailyData.ph_note,
+                alkalinity: dailyData.alkalinity,
+                alkalinity_note: dailyData.alkalinity_note,
+                cyanuric_acid: dailyData.cyanuric_acid,
+                cyanuric_acid_note: dailyData.cyanuric_acid_note,
+                salinity: dailyData.salinity,
+                salinity_note: dailyData.salinity_note,
+                filter_pressure: dailyData.filter_pressure,
+                filter_pressure_note: dailyData.filter_pressure_note,
+                filter_basket: Boolean(dailyData.filter_basket)
+            })
+            .then(() => history.push("/daily_logs"))
+        } else {
             addDailyData({
                 pumphouse: dailyData.pumphouse,
                 hardness: dailyData.hardness,
@@ -116,10 +118,11 @@ export const DailyDataForm = () => {
                 salinity_note: dailyData.salinity_note,
                 filter_pressure: dailyData.filter_pressure,
                 filter_pressure_note: dailyData.filter_pressure_note,
-                filter_basket: dailyData.filter_basket
+                filter_basket: Boolean(dailyData.filter_basket)
             })
                 .then(() => history.push("/daily_logs")) //This link string might be different for posts. Hasn't been coded yet.
-        }
+        }}
+    
     
 
     useEffect(() => {
@@ -132,7 +135,33 @@ export const DailyDataForm = () => {
         getCyanuricAcidParams()
         getSalinityParams()
         getFilterPressureParams()
-        // .then(() => setIsLoading(false))
+        if (dataId) {
+            getDailyDataById(dataId)
+            .then(data => {
+                console.log('dataasdf: ', data);
+                setDailyData({
+                    user: userId,
+                    pumphouse: data.pumphouse.id,
+                    hardness: data.hardness?.id,
+                    hardness_note: data.hardness_note,
+                    total_chlorine: data.total_chlorine?.id,
+                    free_chlorine: data.free_chlorine?.id,
+                    chlorine_note: data.chlorine_note,
+                    ph: data.ph?.id,
+                    ph_note: data.ph_note,
+                    alkalinity: data.alkalinity?.id,
+                    alkalinity_note: data.alkalinity_note,
+                    cyanuric_acid: data.cyanuric_acid?.id,
+                    cyanuric_acid_note: data.cyanuric_acid_note,
+                    salinity: data.salinity?.id,
+                    salinity_note: data.salinity_note,
+                    filter_pressure: data.filter_pressure?.id,
+                    filter_pressure_note: data.filter_pressure_note,
+                    filter_basket: Boolean(data.filter_basket)
+                })
+            })
+        }
+        
     }, [])
 
     return (
@@ -141,7 +170,7 @@ export const DailyDataForm = () => {
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Enter Daily Data</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">{dataId > 0 ? "Edit Daily Data" : "Enter Daily Data"}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -162,6 +191,7 @@ export const DailyDataForm = () => {
                                         </select>
                                     </div>
                                 </fieldset>
+                                {/* {dailyData.hardness === undefined ? <></> :  */}
                                 <fieldset>
                                     <div className="form-group">
                                         <label htmlFor="hardness">Hardness:</label>
@@ -174,8 +204,6 @@ export const DailyDataForm = () => {
                                             ))}
                                         </select>
                                     </div>
-                                 </fieldset>
-                                 <fieldset>
                                     <div className="form-group">
                                         <label htmlFor="hardness_note">Hardness note:</label>
                                         <input type="text" id="hardness_note" onChange={handleControlledInputChange} autoFocus 
@@ -184,7 +212,8 @@ export const DailyDataForm = () => {
                                         value={dailyData.hardness_note}/>
                                     </div>
                                     </fieldset>
-                            
+                                    {/* } */}
+
                                 <fieldset> 
                                     <div className="form-group">
                                         <label htmlFor="total_chlorine">Total Chlorine:</label>
@@ -197,8 +226,6 @@ export const DailyDataForm = () => {
                                             ))}
                                         </select>
                                     </div>
-                                </fieldset>
-                                <fieldset>
                                     <div className="form-group">
                                         <label htmlFor="free_chlorine">Free Chlorine:</label>
                                         <select value={dailyData.free_chlorine} id="free_chlorine" className="form-control" onChange={handleControlledInputChange}>
@@ -210,8 +237,6 @@ export const DailyDataForm = () => {
                                             ))}
                                         </select>
                                     </div>
-                                </fieldset>
-                                <fieldset>
                                     <div className="form-group">
                                         <label htmlFor="chlorine_note">Chlorine note:</label>
                                         <input type="text" id="chlorine_note" onChange={handleControlledInputChange} autoFocus 
@@ -220,6 +245,7 @@ export const DailyDataForm = () => {
                                         value={dailyData.chlorine_note}/>
                                     </div>
                                     </fieldset>
+
                                 <fieldset>
                                     <div className="form-group">
                                         <label htmlFor="ph">pH:</label>
@@ -232,8 +258,7 @@ export const DailyDataForm = () => {
                                             ))}
                                         </select>
                                     </div>
-                                </fieldset>
-                                <fieldset>
+
                                     <div className="form-group">
                                         <label htmlFor="ph_note">pH note:</label>
                                         <input type="text" id="ph_note" onChange={handleControlledInputChange} autoFocus 
@@ -242,6 +267,7 @@ export const DailyDataForm = () => {
                                         value={dailyData.ph_note}/>
                                     </div>
                                     </fieldset>
+
                                 <fieldset>
                                     <div className="form-group">
                                         <label htmlFor="alkalinity">Alkalinity:</label>
@@ -254,8 +280,7 @@ export const DailyDataForm = () => {
                                             ))}
                                         </select>
                                     </div>
-                                </fieldset>
-                                <fieldset>
+
                                     <div className="form-group">
                                         <label htmlFor="alkalinity_note">Alkalinity note:</label>
                                         <input type="text" id="alkalinity_note" onChange={handleControlledInputChange} autoFocus 
@@ -264,6 +289,7 @@ export const DailyDataForm = () => {
                                         value={dailyData.alkalinity_note}/>
                                     </div>
                                     </fieldset>
+
                                 <fieldset>
                                     <div className="form-group">
                                         <label htmlFor="cyanuric_acid">Cyanuric Acid:</label>
@@ -276,8 +302,7 @@ export const DailyDataForm = () => {
                                             ))}
                                         </select>
                                     </div>
-                                </fieldset>
-                                <fieldset>
+
                                     <div className="form-group">
                                         <label htmlFor="cyanuric_acid_note">Cyanuric Acid note:</label>
                                         <input type="text" id="cyanuric_acid_note" onChange={handleControlledInputChange} autoFocus 
@@ -334,7 +359,7 @@ export const DailyDataForm = () => {
                                 <label>Filter Baskets Cleaned?</label>
                                 <div class="form-check">
                                     <input type="checkbox" readonly class="form-check-input" aria-label="Text input with checkbox" 
-                                      onChange={handleControlledInputChange} id="filter_basket" value={dailyData.filter_basket} />
+                                      onChange={handleControlledInputChange} id="filter_basket" value={!dailyData.filter_basket} />
                                     <label class="form-check-label" for="defaultCheck1">
                                         True
                                     </label>
@@ -347,7 +372,7 @@ export const DailyDataForm = () => {
                                     <button type="button" class="btn btn-primary" onClick={event => {
                                         event.preventDefault()
                                         handleSaveDailyData()
-                                    }} data-dismiss="modal" >{dailyDataId > 0 ? "Edit Data Entry" : "Save Data Entry"}</button>
+                                    }} data-dismiss="modal" >{dataId > 0 ? "Edit Data Entry" : "Save Data Entry"}</button>
                                 </div>
                     </div>
                         </div>
