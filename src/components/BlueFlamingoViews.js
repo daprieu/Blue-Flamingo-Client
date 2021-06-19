@@ -30,6 +30,7 @@ import { HardnessForm } from "./parameters/hardness/HardnessParamForm"
 import { PHForm } from "./parameters/pH/PHParamsForm"
 import { SalinityForm } from "./parameters/salinity/SalinityParamForm"
 import { TotalChlorineForm } from "./parameters/totalChlorine/TotalChlorineParamForm"
+import { DailyDataDetail } from "./dailyData/DailyDataDetails"
 
 
 export const BlueFlamingoViews = () => {
@@ -54,6 +55,12 @@ export const BlueFlamingoViews = () => {
                                                     </Route>
                                                     <Route exact path="/daily_logs">
                                                         <DailyDataList />
+                                                    </Route>
+                                                    <Route path="/daily_logs/detail/:dataId(\d+)">
+                                                        <DailyDataDetail />
+                                                    </Route>
+                                                    <Route exact path="/daily_logs/edit/:dataId(\d+)">
+                                                        <DailyDataForm />
                                                     </Route>
                                                 </DailyDataProvider>
                                                 <Route exact path="/pumphouse">

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
 import { DailyDataContext } from "./DailyDataProvider"
-import { Link, useHistory, useParams } from "react-router-dom"
+import { Link, Route, useHistory, useParams } from "react-router-dom"
 // import "/params.css"
 
 export const DailyDataList = () => {
-    const { dailyData, getDailyData } = useContext(DailyDataContext)
+    const { dailyData, getDailyData, deleteDailyData } = useContext(DailyDataContext)
     console.log('dailyData: ', dailyData);
    
     // console.log('posts: ', posts);
@@ -14,6 +14,7 @@ export const DailyDataList = () => {
     const isStaff = JSON.parse(localStorage.getItem("isStaff"))
 
     const { userId } = useParams()
+    const { dataId } = useParams();
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(true)
     const [searchTerm, setSearchTerm] = useState("")
@@ -22,6 +23,14 @@ export const DailyDataList = () => {
             getDailyData()
                 .then(() => setIsLoading(false))
     }, [])
+    const handleDetailLink = (ddId) => {
+            // <Link type="button" class="btn btn-primary" data-toggle="modal" data-target="dataDetails" to={{pathname: `/daily_logs/detail/${dataId}`}}>
+            // Launch demo modal {
+            history.push(`/daily_logs/detail/${ddId}`)
+            // }
+            // </Link>
+        
+    }
 
     // So we wouldn't have to worry about missing ?'s in the return component
     // and avoid the "cannot find label of undefined" error.
@@ -44,12 +53,15 @@ export const DailyDataList = () => {
                     <th scope="col">Cyanuric Acid</th>
                     <th scope="col">Salinity</th>
                     <th scope="col">Filter Pressure</th>
-                    <th scope="col">Filter Baskets Cleaned</th>
+                    {/* <th scope="col">Filter Baskets Cleaned</th> */}
                   </tr>
                   </thead>
                 <tbody>
             {dailyData.map(dd =>
-                  <tr>
+                  <tr onClick={(e) => {
+                    e.preventDefault()
+                    handleDetailLink(dd.id)
+                  }}>
                     <th scope="row" key={dd.id}>{dd.id}</th>
                     <td>{dd.date}</td>
                     <td>{dd.pumphouse?.name}</td>
@@ -61,7 +73,6 @@ export const DailyDataList = () => {
                     <td>{dd.cyanuric_acid?.ppm}</td>
                     <td>{dd.salinity?.ppm}</td>
                     <td>{dd.filter_pressure?.psi}</td>
-                    <td>{dd.filter_basket}</td>
                   </tr>
                     )}
                   </tbody>
