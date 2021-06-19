@@ -57,6 +57,7 @@ export const BlueFlamingoViews = () => {
                                                         <DailyDataList />
                                                     </Route>
                                                     <Route path="/daily_logs/detail/:dataId(\d+)">
+                                                        <DailyDataList />
                                                         <DailyDataDetail />
                                                     </Route>
                                                     <Route exact path="/daily_logs/edit/:dataId(\d+)">

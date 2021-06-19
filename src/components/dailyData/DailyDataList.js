@@ -24,11 +24,11 @@ export const DailyDataList = () => {
                 .then(() => setIsLoading(false))
     }, [])
     const handleDetailLink = (ddId) => {
-            // <Link type="button" class="btn btn-primary" data-toggle="modal" data-target="dataDetails" to={{pathname: `/daily_logs/detail/${dataId}`}}>
+        <Route type="button" class="btn btn-primary" data-toggle="modal" data-target="#dataDetails" to={`/daily_logs/detail/${ddId}`}></Route>
             // Launch demo modal {
-            history.push(`/daily_logs/detail/${ddId}`)
+            // history.push(<Link type="button" class="btn btn-primary" data-toggle="modal" data-target="#dataDetails" to={`/daily_logs/detail/${ddId}`}>Deets</Link>)
             // }
-            // </Link>
+            
         
     }
 
@@ -73,6 +73,7 @@ export const DailyDataList = () => {
                     <td>{dd.cyanuric_acid?.ppm}</td>
                     <td>{dd.salinity?.ppm}</td>
                     <td>{dd.filter_pressure?.psi}</td>
+                    <Link type="button" class="btn btn-primary" data-toggle="modal" data-backdrop='false' data-target="#dataDetails" to={`/daily_logs/detail/${dd.id}`}>Deets</Link>
                   </tr>
                     )}
                   </tbody>

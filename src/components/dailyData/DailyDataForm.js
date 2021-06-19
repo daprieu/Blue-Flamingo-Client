@@ -99,7 +99,7 @@ console.log('dailyData: ', dailyData);
                 filter_pressure_note: dailyData.filter_pressure_note,
                 filter_basket: Boolean(dailyData.filter_basket)
             })
-            .then(() => history.push("/daily_logs"))
+            .then(() => history.push(`/daily_logs`))
         } else {
             addDailyData({
                 pumphouse: dailyData.pumphouse,
@@ -121,7 +121,8 @@ console.log('dailyData: ', dailyData);
                 filter_basket: Boolean(dailyData.filter_basket)
             })
                 .then(() => history.push("/daily_logs")) //This link string might be different for posts. Hasn't been coded yet.
-        }}
+                .then((`#dataDetails`).modal(`dispose`))
+            }}
     
     
 
@@ -370,7 +371,7 @@ console.log('dailyData: ', dailyData);
                                     <button type="button" class="btn btn-primary" onClick={event => {
                                         event.preventDefault()
                                         handleSaveDailyData()
-                                    }} data-dismiss="modal" >{dataId > 0 ? "Edit Data Entry" : "Save Data Entry"}</button>
+                                    }} data-target="#dataDetails" data-backdrop="false" data-dismiss="modal" >{dataId > 0 ? "Edit Data Entry" : "Save Data Entry"}</button>
                                 </div>
                     </div>
                         </div>
