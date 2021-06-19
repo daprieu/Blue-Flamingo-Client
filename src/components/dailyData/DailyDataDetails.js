@@ -4,6 +4,7 @@ import { DailyDataContext } from "./DailyDataProvider"
 
 export const DailyDataDetail = () => {
     const { dailyData, getDailyDataById, deleteDailyData } = useContext(DailyDataContext)
+    console.log('dailyData: ', dailyData);
     const history = useHistory()
 
     const [data, setData] = useState({
@@ -50,16 +51,16 @@ export const DailyDataDetail = () => {
 
     return (
         <>
-            {/* <div class="modal fade" id="dataDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="dataDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Data entry {data?.id} details</h5>
+                            <h5 class="modal-title" id="dataDetails">Data entry {data?.id} details</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body"> */}
+                        <div class="modal-body">
                             <section className="data">
                                 <label>Data entry {data?.id} details</label><br />
                                 <label>Entered on {data?.date}</label>
@@ -87,14 +88,16 @@ export const DailyDataDetail = () => {
                     <Link className="navbar__link" type="link" data-toggle="modal" data-target="#exampleModal" to={{
                         pathname: `/daily_logs/edit/${data.id}`
                     }}>Edit</Link>
-                        {/* </div>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <Link  type="link" data-toggle="modal" data-target="#exampleModal" to={{
+                        pathname: `/daily_logs/edit/${data.id}`
+                    }}><button type="button" class="btn btn-primary" >Edit Data</button></Link>
                         </div>
                     </div>
                 </div>
-            </div> */}
+            </div>
         </>
     )
 
