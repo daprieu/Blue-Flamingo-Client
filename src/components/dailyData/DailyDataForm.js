@@ -81,21 +81,21 @@ console.log('dailyData: ', dailyData);
         } if (dataId > 0) {
             editDailyDataById({
                 id: parseInt(dataId),
-                pumphouse: dailyData.pumphouse,
-                hardness: dailyData.hardness,
+                pumphouse: parseInt(dailyData.pumphouse),
+                hardness: parseInt(dailyData.hardness),
                 hardness_note: dailyData.hardness_note,
-                total_chlorine: dailyData.total_chlorine,
-                free_chlorine: dailyData.free_chlorine,
+                total_chlorine: parseInt(dailyData.total_chlorine),
+                free_chlorine: parseInt(dailyData.free_chlorine),
                 chlorine_note: dailyData.chlorine_note,
-                ph: dailyData.ph,
+                ph: parseInt(dailyData.ph),
                 ph_note: dailyData.ph_note,
-                alkalinity: dailyData.alkalinity,
+                alkalinity: parseInt(dailyData.alkalinity),
                 alkalinity_note: dailyData.alkalinity_note,
-                cyanuric_acid: dailyData.cyanuric_acid,
+                cyanuric_acid: parseInt(dailyData.cyanuric_acid),
                 cyanuric_acid_note: dailyData.cyanuric_acid_note,
-                salinity: dailyData.salinity,
+                salinity: parseInt(dailyData.salinity),
                 salinity_note: dailyData.salinity_note,
-                filter_pressure: dailyData.filter_pressure,
+                filter_pressure: parseInt(dailyData.filter_pressure),
                 filter_pressure_note: dailyData.filter_pressure_note,
                 filter_basket: Boolean(dailyData.filter_basket)
             })
@@ -355,14 +355,12 @@ console.log('dailyData: ', dailyData);
                                         value={dailyData.filter_pressure_note}/>
                                     </div>
                                     </fieldset>
-                                <fieldset>
-                                <label>Filter Baskets Cleaned?</label>
-                                <div class="form-check">
-                                    <input type="checkbox" readonly class="form-check-input" aria-label="Text input with checkbox" 
-                                      onChange={handleControlledInputChange} id="filter_basket" value={!dailyData.filter_basket} />
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        True
-                                    </label>
+                                <fieldset class="row ml-1">
+                                <label class="mr-3 mb-0">Did you clean the filter baskets?</label>
+                                <div class="form-check pt-1">
+                                    
+                                    <input type="checkbox" readonly class="form-check-input pt-1" aria-label="Text input with checkbox" 
+                                    onChange={handleControlledInputChange} id="filter_basket" checked={dailyData.filter_basket} value={!dailyData.filter_basket} />
                                     </div>
                                 </fieldset>
                             </form>
