@@ -1,4 +1,6 @@
 /* .hardnessRadio {
+    box-shadow: 1em 1.5em 2em #5f5757;
+    border-radius: 1em;
     display: inline-flex;
     overflow: hidden;
     border-radius: 15px;
@@ -8,78 +10,103 @@
 .radio__input {
     display: none;
 }
-
-.hardnessRadio__label {
+.paramField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
     
-    padding: 8pt 14pt;
-    font-size: 14pt;
-    color: #ffffff;
-    background: #796aa3;
-    cursor: pointer;
-    transition: background 0.1s;
 }
-.totalChlorineRadio__label {
-    
-    padding: 8pt 14pt;
+.paramRadio__label {
+    width: 5em;
+    justify-content: center;
+    padding: .75em 1em;
     font-size: 14pt;
     color: black;
-    background: #eaf2c9;
+    margin-bottom: 0;
     cursor: pointer;
     transition: background 0.1s;
 }
-.freeChlorineRadio__label {
-    
-    padding: 8pt 14pt;
-    font-size: 14pt;
-    color: #ffffff;
-    background: #ccb1d2;
-    cursor: pointer;
-    transition: background 0.1s;
+/* hardness */
+.hardnessRadio {
+    box-shadow: 1em 1.5em 2em #5f5757;
+    border-radius: 1em;
+    text-align: center;
+    justify-content: center;
+    color: #ffffff; 
+    background-image: linear-gradient(to right, #4b73a6, #796aa3, #b16299);
 }
-.pHRadio__label {
-    
-    padding: 8pt 14pt;
-    font-size: 14pt;
-    color: #ffffff;
-    background: #e06835;
-    cursor: pointer;
-    transition: background 0.1s;
+/* total chlorine */
+.tChlorineRadio {
+    box-shadow: 1em 1.5em 2em #5f5757;
+    border-radius: 1em;
+    text-align: center;
+    justify-content: center;
+    background-image: linear-gradient(to right, #fff7c0, #eaf2c9, #aad8be);
 }
-.alkalinityRadio__label {
-    
-    padding: 8pt 14pt;
-    font-size: 14pt;
-    color: #ffffff;
-    background: #7e998b;
-    cursor: pointer;
-    transition: background 0.1s;
+/* free chlorine */
+.fChlorineRadio {
+    box-shadow: 1em 1.5em 2em #5f5757;
+    border-radius: 1em;
+    text-align: center;
+    justify-content: center;
+    color: black;
+    background-image: linear-gradient(to right, #fffae2, #ccb1d2, #8d4597);
 }
-.cyanuricAcidRadio__label {
-    
-    padding: 8pt 14pt;
-    font-size: 14pt;
-    color: #ffffff;
-    background: #009578;
-    cursor: pointer;
-    transition: background 0.1s;
+/* pH */
+.pHRadio {
+    box-shadow: 1em 1.5em 2em #5f5757;
+    border-radius: 1em;
+    text-align: center;
+    justify-content: center;
+    color: black;
+    background-image: linear-gradient(to right, #f0ae60, #e06835, #e4335d);
 }
-.salinityRadio__label {
-    
-    padding: 8pt 14pt;
-    font-size: 14pt;
-    color: #ffffff;
-    background: #4a99f0;
-    cursor: pointer;
-    transition: background 0.1s;
+/* alkalinity */
+.alkalinityRadio {
+    box-shadow: 1em 1.5em 2em #5f5757;
+    border-radius: 1em;
+    text-align: center;
+    justify-content: center;
+    color: black;
+    background-image: linear-gradient(to right, #e6b965, #7e998b, #4b7e8f);
 }
-.filterPressureRadio__label {
-    
-    padding: 8pt 14pt;
-    font-size: 14pt;
-    color: #ffffff;
-    background: #cf6a18;
-    cursor: pointer;
-    transition: background 0.1s;
+/* cyanuric acid */
+.cyanuricAcidRadio {
+    box-shadow: 1em 1.5em 2em #5f5757;
+    border-radius: 1em;
+    text-align: center;
+    justify-content: center;
+    color: black;
+    background-image: linear-gradient(to right, #dba960, #c55764, #983894);
+}
+/* salinity */
+.salinityRadio {
+    box-shadow: 1em 1.5em 2em #5f5757;
+    border-radius: 1em;
+    text-align: center;
+    justify-content: center;
+    color: black;
+    background-image: linear-gradient(to right, #adc9e0, #5a64ad, #141e68);
+}
+/* filter pressure */
+.filterPressureRadio {
+    box-shadow: 1em 1.5em 2em #5f5757;
+    border-radius: 1em;
+    text-align: center;
+    justify-content: center;
+    color: black;
+    background-image: linear-gradient(to right, #327425, #f0ae60, #e4335d);
+}
+/* param messages */
+.paramMessageParent {
+    display: flex;
+    justify-content: center;
+}
+.paramMessage {
+    padding-left: 1em;
+    display: flex;
+    font-weight: bold;
 }
 
 
@@ -88,5 +115,8 @@
 }
 
 .radio__input:checked + .radio__label {
-    background:rgb(16, 88, 16);
+    color: #ffffff;
+    border-radius: 1em;
+    opacity: 60%;
+    background:black;
 }

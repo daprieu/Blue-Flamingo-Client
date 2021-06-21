@@ -62,6 +62,7 @@ export const BlueFlamingoViews = () => {
                                                         <DailyDataDetail />
                                                     </Route>
                                                     <Route exact path="/daily_logs/edit/:dataId(\d+)">
+                                                        <DailyDataList />
                                                         <DailyDataForm />
                                                     </Route>
                                                 </DailyDataProvider>

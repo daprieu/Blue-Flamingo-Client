@@ -129,7 +129,7 @@ export const DailyDataDetail = () => {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <Link  type="link" data-toggle="modal" data-target="#exampleModal" to={{
+                            <Link  type="link" data-toggle="modal" data-target="#exampleModal" data-backdrop='false' to={{
                         pathname: `/daily_logs/edit/${data.id}`
                     }}>
                         <button type="button" class="btn btn-primary" >Edit Data</button></Link>

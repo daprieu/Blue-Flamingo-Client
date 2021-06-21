@@ -71,8 +71,8 @@ export const DailyDataForm = () => {
 
 
     const handleSaveDailyData = () => {
-        if (dailyData.filter_basket === false) {
-            window.alert("Please clean baskets")
+        if (dailyData.filter_basket === false || dailyData.pumphouse === "") {
+            window.alert("Make sure to select a pump house and clean baskets")
         } if (dataId > 0) {
             editDailyDataById({
                 id: parseInt(dataId),
@@ -95,6 +95,7 @@ export const DailyDataForm = () => {
                 filter_basket: Boolean(dailyData.filter_basket)
             })
                 .then(() => history.push(`/daily_logs`))
+                
         } else {
             addDailyData({
                 pumphouse: dailyData.pumphouse,
@@ -117,7 +118,9 @@ export const DailyDataForm = () => {
             })
                 .then(() => history.push("/daily_logs")) //This link string might be different for posts. Hasn't been coded yet.
                 
-        }
+            }
+        
+        
     }
 
 
@@ -162,7 +165,7 @@ export const DailyDataForm = () => {
 
     return (
         <>
-        <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -175,7 +178,7 @@ export const DailyDataForm = () => {
                             <form className="dailyDataForm">
                                 <fieldset>
                                     <div className="form-group">
-                                        <label htmlFor="pumphouse">Pumphouse:</label>
+                                        <h3 htmlFor="pumphouse">Pumphouse:</h3>
                                         <select value={dailyData.pumphouse} id="pumphouse" className="form-control" onChange={handleControlledInputChange}>
                                             <option value="0">Select a Pumphouse</option>
                                             {pumphouse.map(ph => (
@@ -186,59 +189,59 @@ export const DailyDataForm = () => {
                                         </select>
                                     </div>
                                 </fieldset>
-                                <fieldset>
-                                    <label htmlFor="hardness">Hardness:</label>
+                                    <h3 htmlFor="hardness">Hardness:</h3>
+                                <fieldset class="paramField">
                                     <div class="hardnessRadio">
                                         {hardnessParameters?.map(h => (
                                             <>
-                                                <input class="radio__input" type="radio" key={h.id} onChange={handleControlledInputChange} checked={h.id === dailyData.hardness}  value={h.id}
-                                                     name="hardnessRadio" id={`hardness--${h.id}`} />
-                                                     <label value={dailyData.hardness} class={`hardnessRadio__label radio__label`} for={`hardness--${h.id}`}>{h.ppm}</label>
+                                                <input class="radio__input" type="radio" key={h.id} onChange={handleControlledInputChange} checked={h.id == dailyData.hardness}  value={h.id}
+                                                    name="hardnessRadio" id={`hardness--${h.id}`} />
+                                                    <label value={dailyData.hardness} class={`paramRadio__label radio__label`} for={`hardness--${h.id}`}>{h.ppm}</label>
                                             </>
-
                                             ))}
-                                            <>
-                                            {dailyData.hardness != null ? <>{hardnessParameters.find(hp => hp.id === parseInt(dailyData.hardness)).message}</> : "" }
-                                            </>
                                     </div>
                                     </fieldset>
+                                            <div class="paramMessageParent">
+                                            {dailyData.hardness != null ? <>Hardness value is:<div class="paramMessage"> {hardnessParameters.find(hp => hp.id === parseInt(dailyData.hardness)).message}</div></> : "" }
+                                            </div>
                                     <fieldset>
                                     <div className="form-group">
-                                        
                                         <input type="text" id="hardness_note" onChange={handleControlledInputChange} autoFocus
                                             className="form-control"
                                             placeholder="Hardness Note"
                                             value={dailyData.hardness_note} />
                                     </div>
                                 </fieldset>
-                                <fieldset>
-                                <label htmlFor="free_chlorine">Total Chlorine:</label>
+                                <h3 htmlFor="free_chlorine">Total Chlorine:</h3>
+                                <fieldset class="paramField">
                                 <div class="tChlorineRadio">
                                         {totalChlorineParameters?.map(tc => (
                                             <>
-                                                <input class="radio__input" type="radio" key={tc.id} onChange={handleControlledInputChange} checked={tc.id === dailyData.total_chlorine}  value={tc.id}
+                                                <input class="radio__input" type="radio" key={tc.id} onChange={handleControlledInputChange} checked={tc.id == dailyData.total_chlorine}  value={tc.id}
                                                      name="tChlorineRadio" id={`total_chlorine--${tc.id}`} />
-                                                     <label value={dailyData.total_chlorine}class="totalChlorineRadio__label radio__label" for={`total_chlorine--${tc.id}`}>{tc.ppm}</label>
+                                                     <label value={dailyData.total_chlorine} class="paramRadio__label radio__label" for={`total_chlorine--${tc.id}`}>{tc.ppm}</label>
                                             </>
                                         ))}
-                                        <>
-                                            {dailyData.total_chlorine != null ? <>{totalChlorineParameters.find(hp => hp.id === parseInt(dailyData.total_chlorine)).message}</> : "" }
-                                            </>
                                     </div>
-                                        <label htmlFor="free_chlorine">Free Chlorine:</label>
+                                    </fieldset>
+                                        <div class="paramMessageParent">
+                                            {dailyData.total_chlorine != null ? <>Total Chlorine Value is:<div class="paramMessage">{totalChlorineParameters.find(hp => hp.id === parseInt(dailyData.total_chlorine)).message}</div></> : "" }
+                                            </div>
+                                    <h3 htmlFor="free_chlorine">Free Chlorine:</h3>
+                                    <fieldset class="paramField">
                                         <div class="fChlorineRadio">
                                         {freeChlorineParameters?.map(fc => (
                                             <>
-                                                <input class="radio__input" type="radio" key={fc.id} onChange={handleControlledInputChange} checked={fc.id === dailyData.free_chlorine}  value={fc.id}
+                                                <input class="radio__input" type="radio" key={fc.id} onChange={handleControlledInputChange} checked={fc.id == dailyData.free_chlorine}  value={fc.id}
                                                      name="fChlorineRadio" id={`free_chlorine--${fc.id}`} />
-                                                     <label value={dailyData.free_chlorine}class="freeChlorineRadio__label radio__label" for={`free_chlorine--${fc.id}`}>{fc.ppm}</label>
+                                                     <label value={dailyData.free_chlorine}class="paramRadio__label radio__label" for={`free_chlorine--${fc.id}`}>{fc.ppm}</label>
                                             </>
                                         ))}
-                                        <>
-                                            {dailyData.free_chlorine != null ? <>{freeChlorineParameters.find(hp => hp.id === parseInt(dailyData.free_chlorine)).message}</> : "" }
-                                            </>
                                     </div>
                                     </fieldset>
+                                        <div class="paramMessageParent">
+                                            {dailyData.free_chlorine != null ? <>Free Chlorine Value is:<div class="paramMessage">{freeChlorineParameters.find(hp => hp.id === parseInt(dailyData.free_chlorine)).message}</div></> : "" }
+                                            </div>
                                     <fieldset>
                                     <div className="form-group">
                                         
@@ -249,21 +252,21 @@ export const DailyDataForm = () => {
                                     </div>
                                 </fieldset>
 
-                                <fieldset>
-                                <label htmlFor="ph">pH:</label>
-                                        <div class="phRadio">
+                                <h3 htmlFor="ph">pH:</h3>
+                                <fieldset class="paramField">
+                                        <div class="pHRadio">
                                         {pHParameters?.map(ph => (
                                             <>
-                                                <input class="radio__input" type="radio" key={ph.id} onChange={handleControlledInputChange} checked={ph.id === dailyData.ph}  value={ph.id}
-                                                     name="phRadio" id={`ph--${ph.id}`} />
-                                                     <label value={dailyData.ph}class="pHRadio__label radio__label" for={`ph--${ph.id}`}>{ph.ph}</label>
+                                                <input class="radio__input" type="radio" key={ph.id} onChange={handleControlledInputChange} checked={ph.id == dailyData.ph}  value={ph.id}
+                                                     name="pHRadio" id={`ph--${ph.id}`} />
+                                                     <label value={dailyData.ph}class="paramRadio__label radio__label" for={`ph--${ph.id}`}>{ph.ph}</label>
                                             </>
                                         ))}
-                                        <>
-                                            {dailyData.ph != null ? <>{pHParameters.find(hp => hp.id === parseInt(dailyData.ph)).message}</> : "" }
-                                            </>
                                     </div>
                                     </fieldset>
+                                        <div class="paramMessageParent">
+                                            {dailyData.ph != null ? <>pH value is:<div class="paramMessage">{pHParameters.find(hp => hp.id === parseInt(dailyData.ph)).message}</div></> : "" }
+                                            </div>
                                     <fieldset>
                                     <div className="form-group">
                                         <input type="text" id="ph_note" onChange={handleControlledInputChange} autoFocus
@@ -273,21 +276,21 @@ export const DailyDataForm = () => {
                                     </div>
                                 </fieldset>
 
-                                <fieldset>
-                                <label htmlFor="alkalinity">Alkalinity:</label>
+                                <h3 htmlFor="alkalinity">Alkalinity:</h3>
+                                <fieldset class="paramField">
                                         <div class="alkalinityRadio">
                                         {alkParameters?.map(a => (
                                             <>
-                                                <input class="radio__input" type="radio" key={a.id} onChange={handleControlledInputChange} checked={a.id === dailyData.alkalinity}  value={a.id}
+                                                <input class="radio__input" type="radio" key={a.id} onChange={handleControlledInputChange} checked={a.id == dailyData.alkalinity}  value={a.id}
                                                      name="alkalinityRadio" id={`alkalinity--${a.id}`} />
-                                                     <label value={dailyData.alkalinity}class="alkalinityRadio__label radio__label" for={`alkalinity--${a.id}`}>{a.ppm}</label>
+                                                     <label value={dailyData.alkalinity}class="paramRadio__label radio__label" for={`alkalinity--${a.id}`}>{a.ppm}</label>
                                             </>
                                         ))}
-                                        <>
-                                            {dailyData.alkalinity != null ? <>{alkParameters.find(hp => hp.id === parseInt(dailyData.alkalinity)).message}</> : "" }
-                                            </>
                                     </div>
                                     </fieldset>
+                                        <div class="paramMessageParent">
+                                            {dailyData.alkalinity != null ? <>Alkalinity value is:<div class="paramMessage">{alkParameters.find(hp => hp.id === parseInt(dailyData.alkalinity)).message}</div></> : "" }
+                                            </div>
                                     <fieldset>
                                     <div className="form-group">
                                         <input type="text" id="alkalinity_note" onChange={handleControlledInputChange} autoFocus
@@ -296,21 +299,21 @@ export const DailyDataForm = () => {
                                             value={dailyData.alkalinity_note} />
                                     </div>
                                 </fieldset>
-                                <fieldset>
-                                <label htmlFor="cyanuric_acid">Cyanuric Acid:</label>
+                                <h3 htmlFor="cyanuric_acid">Cyanuric Acid:</h3>
+                                <fieldset class="paramField">
                                         <div class="cyanuricAcidRadio">
                                         {cyanAcidParameters?.map(ca => (
                                             <>
-                                                <input class="radio__input" type="radio" key={ca.id} onChange={handleControlledInputChange} checked={ca.id === dailyData.cyanuric_acid}  value={ca.id}
+                                                <input class="radio__input" type="radio" key={ca.id} onChange={handleControlledInputChange} checked={ca.id == dailyData.cyanuric_acid}  value={ca.id}
                                                     name="cyanuricAcidRadio" id={`cyanuric_acid--${ca.id}`} />
-                                                    <label value={dailyData.cyanuric_acid}class="cyanuricAcidRadio__label radio__label" for={`cyanuric_acid--${ca.id}`}>{ca.ppm}</label>
+                                                    <label value={dailyData.cyanuric_acid}class="paramRadio__label radio__label" for={`cyanuric_acid--${ca.id}`}>{ca.ppm}</label>
                                             </>
                                         ))}
-                                        <>
-                                            {dailyData.cyanuric_acid != null ? <>{cyanAcidParameters.find(hp => hp.id === parseInt(dailyData.cyanuric_acid)).message}</> : "" }
-                                            </>
                                     </div>
                                     </fieldset> 
+                                        <div class="paramMessageParent">
+                                            {dailyData.cyanuric_acid != null ? <>Cyanuric Acid Value is:<div class="paramMessage">{cyanAcidParameters.find(hp => hp.id === parseInt(dailyData.cyanuric_acid)).message}</div></> : "" }
+                                            </div>
                                     <fieldset>       
                                     <div className="form-group">
 
@@ -320,21 +323,21 @@ export const DailyDataForm = () => {
                                             value={dailyData.cyanuric_acid_note} />
                                     </div>
                                 </fieldset>
-                                <fieldset>
-                                <label htmlFor="salinity">Salinity:</label>
+                                <h3 htmlFor="salinity">Salinity:</h3>
+                                <fieldset class="paramField">
                                         <div class="salinityRadio">
                                         {salinityParameters?.map(s => (
                                             <>
-                                                <input class="radio__input" type="radio" key={s.id} onChange={handleControlledInputChange} checked={s.id === dailyData.salinity}  value={s.id}
+                                                <input class="radio__input" type="radio" key={s.id} onChange={handleControlledInputChange} checked={s.id == dailyData.salinity}  value={s.id}
                                                      name="salinityRadio" id={`salinity--${s.id}`} />
-                                                     <label value={dailyData.salinity}class="salinityRadio__label radio__label" for={`salinity--${s.id}`}>{s.ppm}</label>
+                                                     <label value={dailyData.salinity}class="paramRadio__label radio__label" for={`salinity--${s.id}`}>{s.ppm}</label>
                                             </>
                                         ))}
-                                        <>
-                                            {dailyData.salinity != null ? <>{salinityParameters.find(hp => hp.id === parseInt(dailyData.salinity)).message}</> : "" }
-                                            </>
                                     </div>
                                     </fieldset>
+                                        <div class="paramMessageParent">
+                                            {dailyData.salinity != null ? <>Salinity Value is:<div class="paramMessage">{salinityParameters.find(hp => hp.id === parseInt(dailyData.salinity)).message}</div></> : "" }
+                                            </div>
                                     <fieldset>
                                     <div className="form-group">
                                         <input type="text" id="salinity_note" onChange={handleControlledInputChange} autoFocus
@@ -343,21 +346,21 @@ export const DailyDataForm = () => {
                                             value={dailyData.salinity_note} />
                                     </div>
                                 </fieldset>
-                                <fieldset>
-                                <label htmlFor="filter_pressure">Filter Pressure:</label>
+                                <h3 htmlFor="filter_pressure">Filter Pressure:</h3>
+                                <fieldset class="paramField">
                                         <div class="filterPressureRadio">
                                         {filterPressureParameters?.map(fp => (
                                             <>
-                                                <input class="radio__input" type="radio" key={fp.id} onChange={handleControlledInputChange} checked={fp.id === dailyData.filter_pressure}  value={fp.id}
+                                                <input class="radio__input" type="radio" key={fp.id} onChange={handleControlledInputChange} checked={fp.id == dailyData.filter_pressure}  value={fp.id}
                                                     name="filterPressureRadio" id={`filter_pressure--${fp.id}`} />
-                                                    <label value={dailyData.filter_pressure} class="filterPressureRadio__label radio__label" for={`filter_pressure--${fp.id}`}>{fp.psi}</label>
+                                                    <label value={dailyData.filter_pressure} class="paramRadio__label radio__label" for={`filter_pressure--${fp.id}`}>{fp.psi}</label>
                                             </>
                                         ))}
-                                        <>
-                                            {dailyData.filter_pressure != null ? <>{filterPressureParameters.find(hp => hp.id === parseInt(dailyData.filter_pressure)).message}</> : "" }
-                                            </>
                                     </div>
                                 </fieldset>
+                                        <div class="paramMessageParent">
+                                            {dailyData.filter_pressure != null ? <>Filter Presure Value is:<div class="paramMessage">{filterPressureParameters.find(hp => hp.id === parseInt(dailyData.filter_pressure)).message}</div></> : "" }
+                                            </div>
                                 <fieldset>
                                     <div className="form-group">
                                         
@@ -382,7 +385,7 @@ export const DailyDataForm = () => {
                             <button type="button" class="btn btn-primary" onClick={event => {
                                 event.preventDefault()
                                 handleSaveDailyData()
-                            }} data-target="#dataDetails" data-backdrop="false" data-dismiss="modal" >{dataId > 0 ? "Edit Data Entry" : "Save Data Entry"}</button>
+                            }} data-target="#dataDetails" data-backdrop="static" >{dataId > 0 ? "Edit Data Entry" : "Save Data Entry"}</button>
                         </div>
                     </div>
                 </div>
