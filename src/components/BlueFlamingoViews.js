@@ -31,6 +31,7 @@ import { PHForm } from "./parameters/pH/PHParamsForm"
 import { SalinityForm } from "./parameters/salinity/SalinityParamForm"
 import { TotalChlorineForm } from "./parameters/totalChlorine/TotalChlorineParamForm"
 import { DailyDataDetail } from "./dailyData/DailyDataDetails"
+import { PumphouseForm } from "./pumphouse/PumphouseForm"
 
 
 export const BlueFlamingoViews = () => {
@@ -66,6 +67,12 @@ export const BlueFlamingoViews = () => {
                                                 </DailyDataProvider>
                                                 <Route exact path="/pumphouse">
                                                     <PumphouseList />
+                                                </Route>
+                                                <Route exact path="/pumphouse/create">
+                                                    <PumphouseForm />
+                                                </Route>
+                                                <Route exact path="/pumphouse/edit/:pumphouseId(\d+)">
+                                                    <PumphouseForm />
                                                 </Route>
                                             </PumphouseProvider>
                                             <Route exact path="/params">

@@ -1,23 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { DailyDataContext } from "./DailyDataProvider"
-import { Link, Route, useHistory, useParams } from "react-router-dom"
+import { Link, Route } from "react-router-dom"
 // import "/params.css"
 
 export const DailyDataList = () => {
-    const { dailyData, getDailyData, deleteDailyData } = useContext(DailyDataContext)
-    console.log('dailyData: ', dailyData);
-   
-    // console.log('posts: ', posts);
-    const session_user_id = parseInt(localStorage.getItem("rare_user_id"))
-    // const sortedPosts = posts.sort((a, b) => a.publication_date > b.publication_date ? 1 : -1)
-    const CurrentUserId = localStorage.getItem("userId")
-    const isStaff = JSON.parse(localStorage.getItem("isStaff"))
-
-    const { userId } = useParams()
-    const { dataId } = useParams();
-    const history = useHistory()
+    const { dailyData, getDailyData } = useContext(DailyDataContext)
     const [isLoading, setIsLoading] = useState(true)
-    const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
             getDailyData()
@@ -25,15 +13,8 @@ export const DailyDataList = () => {
     }, [])
     const handleDetailLink = (ddId) => {
         <Route type="button" class="btn btn-primary" data-toggle="modal" data-target="#dataDetails" to={`/daily_logs/detail/${ddId}`}></Route>
-            // Launch demo modal {
-            // history.push(<Link type="button" class="btn btn-primary" data-toggle="modal" data-target="#dataDetails" to={`/daily_logs/detail/${ddId}`}>Deets</Link>)
-            // }
-            
-        
     }
 
-    // So we wouldn't have to worry about missing ?'s in the return component
-    // and avoid the "cannot find label of undefined" error.
     if (isLoading) return (<div>Loading</div>)
 
     return (<>
@@ -43,7 +24,7 @@ export const DailyDataList = () => {
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">date</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Pump House</th>
                     <th scope="col">Hardness</th>
                     <th scope="col">Total Chlorine</th>
@@ -63,7 +44,7 @@ export const DailyDataList = () => {
                     handleDetailLink(dd.id)
                   }}>
                     <th scope="row" key={dd.id}>{dd.id}</th>
-                    <td>{dd.date}</td>
+                    <td>{new Date(dd.date).toLocaleDateString()}</td>
                     <td>{dd.pumphouse?.name}</td>
                     <td>{dd.hardness?.ppm}</td>
                     <td>{dd.total_chlorine?.ppm}</td>
@@ -73,7 +54,7 @@ export const DailyDataList = () => {
                     <td>{dd.cyanuric_acid?.ppm}</td>
                     <td>{dd.salinity?.ppm}</td>
                     <td>{dd.filter_pressure?.psi}</td>
-                    <Link type="button" class="btn btn-primary" data-toggle="modal" data-backdrop='false' data-target="#dataDetails" to={`/daily_logs/detail/${dd.id}`}>Deets</Link>
+                    <Link type="button" class="btn btn-primary" data-toggle="modal" data-backdrop='false' data-target="#dataDetails" to={`/daily_logs/detail/${dd.id}`}>Details</Link>
                   </tr>
                     )}
                   </tbody>

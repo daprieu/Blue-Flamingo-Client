@@ -1,15 +1,61 @@
-.hardnessRadio {
+/* .hardnessRadio {
     display: inline-flex;
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 0 5pt rgba(0, 0, 0, 0.25);
-}
+} */
 
 .radio__input {
     display: none;
 }
 
-.radio__label {
+.hardnessRadio__label {
+    
+    padding: 8pt 14pt;
+    font-size: 14pt;
+    color: #ffffff;
+    background: #796aa3;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+.totalChlorineRadio__label {
+    
+    padding: 8pt 14pt;
+    font-size: 14pt;
+    color: black;
+    background: #eaf2c9;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+.freeChlorineRadio__label {
+    
+    padding: 8pt 14pt;
+    font-size: 14pt;
+    color: #ffffff;
+    background: #ccb1d2;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+.pHRadio__label {
+    
+    padding: 8pt 14pt;
+    font-size: 14pt;
+    color: #ffffff;
+    background: #e06835;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+.alkalinityRadio__label {
+    
+    padding: 8pt 14pt;
+    font-size: 14pt;
+    color: #ffffff;
+    background: #7e998b;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+.cyanuricAcidRadio__label {
+    
     padding: 8pt 14pt;
     font-size: 14pt;
     color: #ffffff;
@@ -17,9 +63,28 @@
     cursor: pointer;
     transition: background 0.1s;
 }
+.salinityRadio__label {
+    
+    padding: 8pt 14pt;
+    font-size: 14pt;
+    color: #ffffff;
+    background: #4a99f0;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+.filterPressureRadio__label {
+    
+    padding: 8pt 14pt;
+    font-size: 14pt;
+    color: #ffffff;
+    background: #cf6a18;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
 
 .radio__label:not(:last-of-type) {
-    border-right: 1pt solid #006856;
+    border-right: 1pt solid black;
 }
 
 .radio__input:checked + .radio__label {

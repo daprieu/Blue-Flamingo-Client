@@ -1,17 +1,15 @@
 import React from "react"
-import { Link, useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 import "./NavBar.css"
 import Logo from "./BFP.png"
 
 export const NavBar = () => {
-    const history = useHistory()
-    const userId = localStorage.getItem("userId")
     const isStaff = JSON.parse(localStorage.getItem("isStaff"))
-
     return (
+        <>
         <ul className="navbar">
             <li className="navbar__item">
-                <img className="navbar__logo" src={Logo} />
+                <img className="navbar__logo" src={Logo} alt="" />
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" type="link" data-toggle="modal" data-target="#exampleModal" to="/enter_daily_data">
@@ -24,15 +22,19 @@ export const NavBar = () => {
             <li className="navbar__item">
                 <Link className="navbar__link" to="/">Equipment</Link>
             </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/pumphouse">Pump House MGMT</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/params">Parameter MGMT</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/">Equipment MGMT</Link>
-            </li>
+            { isStaff ? 
+            <ul className="navbar">
+                <li className="navbar__item">
+                    <Link className="navbar__link" to="/pumphouse">Pump House MGMT</Link>
+                </li> 
+                <li className="navbar__item">
+                    <Link className="navbar__link" to="/params">Parameter MGMT</Link>
+                </li>
+                <li className="navbar__item">
+                    <Link className="navbar__link" to="/">Equipment MGMT</Link>
+                </li>
+            </ul> : ""}
+            
             {
                 (localStorage.getItem("BF_user_id") !== null) ?
                     <div className="nav-item">
@@ -41,7 +43,7 @@ export const NavBar = () => {
                                 localStorage.removeItem("BF_user_id")
                                 localStorage.removeItem("isStaff")
                                 localStorage.removeItem("userId")
-                                // history.push({ pathname: "/" })
+                                
                             }}
                         ><Link className="navbar__link" to="/">Logout</Link></button>
                     </div> :
@@ -52,5 +54,6 @@ export const NavBar = () => {
                     
             }         
         </ul>
+        </>
     )
 }

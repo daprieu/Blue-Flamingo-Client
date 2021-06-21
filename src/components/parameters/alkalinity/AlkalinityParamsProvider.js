@@ -14,7 +14,6 @@ export const AlkalinityParametersProvider = (props) => {
         .then(res=>res.json())
         .then(res => {
             setAlkParameters(res)
-            console.log('res: ', res);
             return res
         })
     }

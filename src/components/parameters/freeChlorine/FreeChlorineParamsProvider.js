@@ -14,7 +14,6 @@ export const FreeChlorineParametersProvider = (props) => {
         .then(res=>res.json())
         .then(res => {
             setFreeChlorineParameters(res)
-            console.log('res: ', res);
             return res
         })
     }

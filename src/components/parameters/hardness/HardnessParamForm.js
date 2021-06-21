@@ -16,8 +16,6 @@ export const HardnessForm = () => {
     const { paramId }  = useParams()
     const [isLoading, setIsLoading] = useState(true)
 
-
-
     const handleControlledInputChange = (event) => {
         const newHardness= { ...hardness }
 
@@ -59,8 +57,6 @@ export const HardnessForm = () => {
         <>
             <form onSubmit={handleSaveHardness}>
                 { paramId ? <h2>Edit Hardness</h2> : <h2>Add Hardness</h2> }
-                {/* { paramId ? <div>{ Hardness.ppm }</div> : <></> }
-                { paramId ? <div>{ Hardness.message }</div> : <></> } */}
                 <fieldset>
                     <div>
                         <label htmlFor="label">{ paramId ? "Edit" : "New" } Filter Pressure ppm: </label>

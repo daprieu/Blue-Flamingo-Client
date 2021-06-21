@@ -14,7 +14,6 @@ export const TotalChlorineParametersProvider = (props) => {
         .then(res=>res.json())
         .then(res => {
             setTotalChlorineParameters(res)
-            console.log('res: ', res);
             return res
         })
     }

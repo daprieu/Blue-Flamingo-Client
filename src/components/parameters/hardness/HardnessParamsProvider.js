@@ -14,7 +14,6 @@ export const HardnessParametersProvider = (props) => {
         .then(res=>res.json())
         .then(res => {
             setHardnessParameters(res)
-            console.log('res: ', res);
             return res
         })
     }

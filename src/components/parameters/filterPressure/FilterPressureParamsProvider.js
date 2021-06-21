@@ -14,7 +14,6 @@ export const FilterPressureParametersProvider = (props) => {
         .then(res=>res.json())
         .then(res => {
             setFilterPressureParameters(res)
-            console.log('res: ', res);
             return res
         })
     }

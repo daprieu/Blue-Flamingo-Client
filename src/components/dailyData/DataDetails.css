@@ -1,0 +1,17 @@
+#tableDetails {
+     table-layout: fixed;
+     width: 100%;
+     /* word-wrap: break-word; */
+   }
+.tableDetail{
+    font-size: 10pt;
+    font-weight: 400;
+}
+#colDetails {
+    /* font-size: 1em; */
+    width: 10pt;
+}
+
+#noteTitle {
+    font-weight: bold;
+}
