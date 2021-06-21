@@ -12,10 +12,8 @@ export const SalinityParametersProvider = (props) => {
             }
         })
         .then(res=>res.json())
-        .then(res=>res.reverse())
         .then(res => {
             setSalinityParameters(res)
-            console.log('res: ', res);
             return res
         })
     }

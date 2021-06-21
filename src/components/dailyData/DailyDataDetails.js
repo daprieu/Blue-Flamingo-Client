@@ -1,10 +1,10 @@
 import { Link, useParams, useHistory } from "react-router-dom"
 import React, { useContext, useEffect, useState } from "react"
 import { DailyDataContext } from "./DailyDataProvider"
+import "./DataDetails.css"
 
 export const DailyDataDetail = () => {
-    const { dailyData, getDailyDataById, deleteDailyData } = useContext(DailyDataContext)
-    console.log('dailyData: ', dailyData);
+    const { getDailyDataById, deleteDailyData } = useContext(DailyDataContext)
     const history = useHistory()
 
     const [data, setData] = useState({
@@ -28,14 +28,11 @@ export const DailyDataDetail = () => {
         filter_basket: ""
     })
 
-    const [isLoading, setIsLoading] = useState(true)
-    const userId = localStorage.getItem("userId")
     const { dataId } = useParams();
 
     useEffect(() => {
         getDailyDataById(dataId)
             .then((response) => {
-                console.log('response: ', response);
                 setData(response)
             })
     }, [])
@@ -48,52 +45,98 @@ export const DailyDataDetail = () => {
                 .then(() => history.push(`/daily_logs`))
         }
     }
+    
 
     return (
         <>
-            <div class="modal fade" id="dataDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+            
+                <div class="modal fade bd-example-modal-lg container" id="dataDetails" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg container">
+                    <div class="modal-content container">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="dataDetails">Data entry {data?.id} details</h5>
+                            <h5 class="modal-title" id="dataDetails">Details for Data entry {data?.id}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        <div>
+            <div>Daily Data</div>
+                <table class="tableDetail table-bordered table-dark table-hover " id="tableDetails" >
+                <thead>
+                  <tr>
+                    <th scope="col" id="colDetails" style={{width: '.25em'}} >#</th>
+                    <th scope="col" id="colDetails" >Date</th>
+                    <th scope="col" id="colDetails" >Pump House</th>
+                    <th scope="col" id="colDetails" >Hardness</th>
+                    <th scope="col" id="colDetails" >Total Chlorine</th>
+                    <th scope="col" id="colDetails" >Free Chlorine</th>
+                    <th scope="col" id="colDetails" style={{width: '.75em'}}>pH</th>
+                    <th scope="col" id="colDetails" >Alkalinity</th>
+                    <th scope="col" id="colDetails" >Cyanuric Acid</th>
+                    <th scope="col" id="colDetails" >Salinity</th>
+                    <th scope="col" id="colDetails" >Filter Pressure</th>
+                    {/* <th scope="col">Filter Baskets Cleaned</th> */}
+                  </tr>
+                  </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row" key={data.id}>{data.id}</th>
+                    <td>{new Date(data.date).toLocaleDateString()}</td>
+                    <td>{data.pumphouse?.name}</td>
+                    <td>{data.hardness?.ppm}</td>
+                    <td>{data.total_chlorine?.ppm}</td>
+                    <td>{data.free_chlorine?.ppm}</td>
+                    <td>{data.ph?.ph}</td>
+                    <td>{data.alkalinity?.ppm}</td>
+                    <td>{data.cyanuric_acid?.ppm}</td>
+                    <td>{data.salinity?.ppm}</td>
+                    <td>{data.filter_pressure?.psi}</td>
+                  </tr>
+                  </tbody>
+            </table>
+        </div>
                         <div class="modal-body">
                             <section className="data">
-                                <label>Data entry {data?.id} details</label><br />
-                                <label>Entered on {data?.date}</label>
-                                <div className="data__content">{data?.hardness?.ppm}</div>
-                                <div className="data__content">{data?.hardness_note}</div>
-                                <div className="data__content">{data?.total_chlorine?.ppm}</div>
-                                <div className="data__content">{data?.free_chlorine?.ppm}</div>
-                                <div className="data__content">{data?.chlorine_note}</div>
-                                <div className="data__content">{data?.ph?.ph}</div>
+                                <div>
+                                    <div id="noteTitle">Hardness Note:</div>
+                                    <div>{data?.hardness_note}</div>
+                                </div>
+                                <div>
+                                    <div id="noteTitle">Chlorine Note:</div>
+                                    <div className="data__content">{data?.chlorine_note}</div>
+                                </div>
+                                <div>
+                                    <div id="noteTitle">pH Note:</div>
                                 <div className="data__content">{data?.ph_note}</div>
-                                <div className="data__content">{data?.alkalinity?.ppm}</div>
+                                </div>
+                                <div>
+                                    <div id="noteTitle">Alkalinity Note:</div>
                                 <div className="data__content">{data?.alkalinity_note}</div>
-                                <div className="data__content">{data?.cyanuric_acid?.ppm}</div>
+                                </div>
+                                <div>
+                                    <div id="noteTitle">Cyanuric Acid Note:</div>
                                 <div className="data__content">{data?.cyanuric_acid_note}</div>
-                                <div className="data__content">{data?.salinity?.ppm}</div>
+                                </div>
+                                <div>
+                                    <div id="noteTitle">Salinity Note:</div>
                                 <div className="data__content">{data?.salinity_note}</div>
-                                <div className="data__content">{data?.filter_pressure?.psi}</div>
+                                </div>
+                                <div>
+                                    <div id="noteTitle">Filter Pressure Note:</div>
                                 <div className="data__content">{data?.filter_pressure_note}</div>
+                                </div>
                             </section>
-                            <button type="button" id="deleteDailyData" onClick={(e) => {
-                      e.preventDefault()
-                      handleDelete(data.id)
-                    }}>Delete</button>
-                
-                    <Link className="navbar__link" type="link" data-toggle="modal" data-target="#exampleModal" to={{
-                        pathname: `/daily_logs/edit/${data.id}`
-                    }}>Edit</Link>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <Link  type="link" data-toggle="modal" data-target="#exampleModal" to={{
                         pathname: `/daily_logs/edit/${data.id}`
-                    }}><button type="button" class="btn btn-primary" >Edit Data</button></Link>
+                    }}>
+                        <button type="button" class="btn btn-primary" >Edit Data</button></Link>
+                    <button type="button" class="btn btn-danger" id="deleteDailyData" onClick={(e) => {
+                      e.preventDefault()
+                      handleDelete(data.id)
+                    }}>Delete</button>
                         </div>
                     </div>
                 </div>

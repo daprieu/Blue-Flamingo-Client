@@ -1,17 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { FilterPressureParametersContext } from "./FilterPressureParamsProvider"
-import { Link, useHistory, useParams } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "../params.css"
 
 export const FilterPressureParamsList = () => {
     const { filterPressureParameters, getFilterPressureParams, deleteFilterPressureParam } = useContext(FilterPressureParametersContext)
-    // console.log('posts: ', posts);
-    const session_user_id = parseInt(localStorage.getItem("rare_user_id"))
-    // const sortedPosts = posts.sort((a, b) => a.publication_date > b.publication_date ? 1 : -1)
-    const CurrentUserId = localStorage.getItem("userId")
-    const isStaff = JSON.parse(localStorage.getItem("isStaff"))
-
-    const { userId } = useParams()
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(true)
 

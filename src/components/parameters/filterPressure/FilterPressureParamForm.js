@@ -58,8 +58,6 @@ export const FilterPressureForm = () => {
         <>
             <form onSubmit={handleSaveFilterPressure}>
                 { paramId ? <h2>Edit FilterPressure</h2> : <h2>Add FilterPressure</h2> }
-                {/* { paramId ? <div>{ FilterPressure.psi }</div> : <></> }
-                { paramId ? <div>{ FilterPressure.message }</div> : <></> } */}
                 <fieldset>
                     <div>
                         <label htmlFor="label">{ paramId ? "Edit" : "New" } Filter Pressure psi: </label>

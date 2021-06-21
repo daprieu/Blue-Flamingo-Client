@@ -1,17 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { CyanuricAcidParametersContext } from "./CyanAcidParamsProvider"
-import { Link, useHistory, useParams } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import "../params.css"
 
 export const CyanAcidParamsList = () => {
-    const { cyanAcidParameters, getCyanuricAcidParams, deleteCyanuricAcidParam, getCyanuricAcidParamById, editCyanuricAcidParamById } = useContext(CyanuricAcidParametersContext)
-    // console.log('posts: ', posts);
-    const session_user_id = parseInt(localStorage.getItem("rare_user_id"))
-    // const sortedPosts = posts.sort((a, b) => a.publication_date > b.publication_date ? 1 : -1)
-    const CurrentUserId = localStorage.getItem("userId")
-    const isStaff = JSON.parse(localStorage.getItem("isStaff"))
-
-    const { userId } = useParams()
+    const { cyanAcidParameters, getCyanuricAcidParams, deleteCyanuricAcidParam } = useContext(CyanuricAcidParametersContext)
     const history = useHistory()
     const [isLoading, setIsLoading] = useState(true)
 

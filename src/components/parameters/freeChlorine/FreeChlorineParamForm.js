@@ -16,13 +16,9 @@ export const FreeChlorineForm = () => {
     const { paramId }  = useParams()
     const [isLoading, setIsLoading] = useState(true)
 
-
-
     const handleControlledInputChange = (event) => {
         const newFreeChlorine= { ...freeChlorine }
-
         newFreeChlorine[event.target.id] = event.target.value
-
         setFreeChlorine(newFreeChlorine)
     }
 
@@ -59,8 +55,6 @@ export const FreeChlorineForm = () => {
         <>
             <form onSubmit={handleSaveFreeChlorine}>
                 { paramId ? <h2>Edit FreeChlorine</h2> : <h2>Add FreeChlorine</h2> }
-                {/* { paramId ? <div>{ FreeChlorine.ppm }</div> : <></> }
-                { paramId ? <div>{ FreeChlorine.message }</div> : <></> } */}
                 <fieldset>
                     <div>
                         <label htmlFor="label">{ paramId ? "Edit" : "New" } Filter Pressure ppm: </label>

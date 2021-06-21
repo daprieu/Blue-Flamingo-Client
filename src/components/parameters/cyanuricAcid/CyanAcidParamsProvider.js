@@ -12,10 +12,8 @@ export const CyanuricAcidParametersProvider = (props) => {
             }
         })
         .then(res=>res.json())
-        .then(res=>res.reverse())
         .then(res => {
             setCyanAcidParameters(res)
-            console.log('res: ', res);
             return res
         })
     }

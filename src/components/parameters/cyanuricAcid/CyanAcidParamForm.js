@@ -15,13 +15,9 @@ export const CyanuricAcidForm = () => {
     const { paramId }  = useParams()
     const [isLoading, setIsLoading] = useState(true)
 
-
-
     const handleControlledInputChange = (event) => {
         const newCyanuricAcid= { ...cyanuricAcid }
-
         newCyanuricAcid[event.target.id] = event.target.value
-
         setCyanuricAcid(newCyanuricAcid)
     }
 

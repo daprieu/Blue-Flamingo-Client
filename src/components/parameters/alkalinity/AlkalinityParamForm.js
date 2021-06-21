@@ -15,14 +15,10 @@ export const AlkalinityForm = () => {
     const { paramId }  = useParams()
     const [isLoading, setIsLoading] = useState(true)
 
-
-
     const handleControlledInputChange = (event) => {
         const newAlkalinity = { ...alkalinity }
         let newLabel = event.target.value
-
         newAlkalinity[event.target.id] = newLabel
-
         setAlkalinity(newAlkalinity)
     }
 
@@ -47,7 +43,6 @@ export const AlkalinityForm = () => {
 
     useEffect(() => {
         if (paramId) {
-
             getAlkalinityParamById(paramId).then(setAlkalinity)
             setIsLoading(false)
         } else {
