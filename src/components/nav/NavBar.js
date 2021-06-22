@@ -9,7 +9,7 @@ export const NavBar = () => {
         <>
         <ul className="navbar">
             <li className="navbar__item">
-                <img className="navbar__logo" src={Logo} alt="" />
+            <Link className="navbar__link" to="/"><img className="navbar__logo" src={Logo} alt="" /></Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" type="link" data-toggle="modal" data-backdrop='static' data-target="#exampleModal" to="/enter_daily_data">
