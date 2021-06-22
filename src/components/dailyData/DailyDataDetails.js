@@ -139,7 +139,7 @@ export const DailyDataDetail = () => {
                         pathname: `/daily_logs/edit/${data.id}`
                     }}>
                         <button type="button" class="btn btn-primary" >Edit Data</button></Link>
-                    <button type="button" class="btn btn-danger" id="deleteDailyData" onClick={(e) => {
+                    <button type="button" class="btn btn-danger" id="deleteDailyData" data-dismiss="modal" onClick={(e) => {
                       e.preventDefault()
                       handleDelete(data.id)
                     }}>Delete</button>
