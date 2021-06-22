@@ -12,7 +12,7 @@ export const NavBar = () => {
                 <img className="navbar__logo" src={Logo} alt="" />
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" type="link" data-toggle="modal" data-target="#exampleModal" to="/enter_daily_data">
+                <Link className="navbar__link" type="link" data-toggle="modal" data-backdrop="static" data-backdrop='false' data-target="#exampleModal" to="/enter_daily_data">
                 Enter Daily Data
                 </Link>
             </li>
