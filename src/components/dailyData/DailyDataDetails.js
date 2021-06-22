@@ -55,7 +55,10 @@ export const DailyDataDetail = () => {
                     <div class="modal-content container">
                         <div class="modal-header">
                             <h5 class="modal-title" id="dataDetails">Details for Data entry {data?.id}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={(e) => {
+                                e.preventDefault()
+                                history.push(`/daily_logs`)
+                                }}>
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -97,38 +100,41 @@ export const DailyDataDetail = () => {
         </div>
                         <div class="modal-body">
                             <section className="data">
-                                <div>
+                               {data?.hardness_note === "" ? <></> : <div>
                                     <div id="noteTitle">Hardness Note:</div>
                                     <div>{data?.hardness_note}</div>
-                                </div>
-                                <div>
+                                </div>}
+                                {data?.chlorine_note === "" ? <></> :<div>
                                     <div id="noteTitle">Chlorine Note:</div>
                                     <div className="data__content">{data?.chlorine_note}</div>
-                                </div>
-                                <div>
+                                </div>}
+                                {data?.ph_note === "" ? <></> :<div>
                                     <div id="noteTitle">pH Note:</div>
                                 <div className="data__content">{data?.ph_note}</div>
-                                </div>
-                                <div>
+                                </div>}
+                                {data?.alkalinity_note === "" ? <></> :<div>
                                     <div id="noteTitle">Alkalinity Note:</div>
                                 <div className="data__content">{data?.alkalinity_note}</div>
-                                </div>
-                                <div>
+                                </div>}
+                                {data?.cyanuric_acid_note === "" ? <></> :<div>
                                     <div id="noteTitle">Cyanuric Acid Note:</div>
                                 <div className="data__content">{data?.cyanuric_acid_note}</div>
-                                </div>
-                                <div>
+                                </div>}
+                                {data?.salinity_note === "" ? <></> :<div>
                                     <div id="noteTitle">Salinity Note:</div>
                                 <div className="data__content">{data?.salinity_note}</div>
-                                </div>
-                                <div>
+                                </div>}
+                                {data?.filter_pressure_note === "" ? <></> :<div>
                                     <div id="noteTitle">Filter Pressure Note:</div>
                                 <div className="data__content">{data?.filter_pressure_note}</div>
-                                </div>
+                                </div>}
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={(e) => {
+                                e.preventDefault()
+                                history.push(`/daily_logs`)
+                                }}>Close</button>
                             <Link  type="link" data-toggle="modal" data-target="#exampleModal" data-backdrop='false' to={{
                         pathname: `/daily_logs/edit/${data.id}`
                     }}>
