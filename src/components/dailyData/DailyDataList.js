@@ -34,7 +34,6 @@ export const DailyDataList = () => {
                     <th scope="col">Cyanuric Acid</th>
                     <th scope="col">Salinity</th>
                     <th scope="col">Filter Pressure</th>
-                    {/* <th scope="col">Filter Baskets Cleaned</th> */}
                   </tr>
                   </thead>
                 <tbody>

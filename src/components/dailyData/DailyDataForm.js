@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { DailyDataContext } from "./DailyDataProvider"
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { PumphouseContext } from "../pumphouse/PumphouseProvider";
 import { HardnessParametersContext } from "../parameters/hardness/HardnessParamsProvider";
 import { TotalChlorineParametersContext } from "../parameters/totalChlorine/TotalChlorineParamsProvider";
@@ -71,9 +71,7 @@ export const DailyDataForm = () => {
 
 
     const handleSaveDailyData = () => {
-        if (dailyData.filter_basket === false || dailyData.pumphouse === "") {
-            window.alert("Make sure to select a pump house and clean baskets")
-        } if (dataId > 0) {
+        if (dataId > 0) {
             editDailyDataById({
                 id: parseInt(dataId),
                 pumphouse: parseInt(dailyData.pumphouse),
@@ -94,7 +92,7 @@ export const DailyDataForm = () => {
                 filter_pressure_note: dailyData.filter_pressure_note,
                 filter_basket: Boolean(dailyData.filter_basket)
             })
-                .then(() => history.push(`/daily_logs`))
+                // .then(() => history.push(`/daily_logs`))
                 
         } else {
             addDailyData({
@@ -116,7 +114,7 @@ export const DailyDataForm = () => {
                 filter_pressure_note: dailyData.filter_pressure_note,
                 filter_basket: Boolean(dailyData.filter_basket)
             })
-                .then(() => history.push("/daily_logs")) //This link string might be different for posts. Hasn't been coded yet.
+                // .then(() => history.push("/daily_logs")) //This link string might be different for posts. Hasn't been coded yet.
                 
             }
         
@@ -179,7 +177,7 @@ export const DailyDataForm = () => {
                                 <fieldset>
                                     <div className="form-group">
                                         <h3 htmlFor="pumphouse">Pumphouse:</h3>
-                                        <select value={dailyData.pumphouse} id="pumphouse" className="form-control" onChange={handleControlledInputChange}>
+                                        <select value={dailyData.pumphouse} id="pumphouse" className="form-control" required onChange={handleControlledInputChange}>
                                             <option value="0">Select a Pumphouse</option>
                                             {pumphouse.map(ph => (
                                                 <option key={ph.id} value={ph.id}>
@@ -374,7 +372,7 @@ export const DailyDataForm = () => {
                                     <label class="mr-3 mb-0">Did you clean the filter baskets?</label>
                                     <div class="form-check pt-1">
 
-                                        <input type="checkbox" readonly class="form-check-input pt-1" aria-label="Text input with checkbox"
+                                        <input type="checkbox" readonly class="form-check-input pt-1" aria-label="Text input with checkbox" required
                                             onChange={handleControlledInputChange} id="filter_basket" checked={dailyData.filter_basket} value={!dailyData.filter_basket} />
                                     </div>
                                 </fieldset>
@@ -382,10 +380,16 @@ export const DailyDataForm = () => {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            {dailyData.filter_basket === false || dailyData.pumphouse === "" ? <button type="button" class="btn btn-primary" onClick={event => {
+                                event.preventDefault()
+                                window.alert("Make sure to select a pump house and clean baskets")
+                            }}>{dataId > 0 ? "Edit Data Entry" : "Save Data Entry"}</button>
+                            :
                             <button type="button" class="btn btn-primary" onClick={event => {
                                 event.preventDefault()
                                 handleSaveDailyData()
-                            }} data-target="#dataDetails" data-backdrop="static" >{dataId > 0 ? "Edit Data Entry" : "Save Data Entry"}</button>
+                                history.push(`/daily_logs`)
+                            }} data-dismiss='modal'>{dataId > 0 ? "Edit Data Entry" : "Save Data Entry"}</button>}
                         </div>
                     </div>
                 </div>
