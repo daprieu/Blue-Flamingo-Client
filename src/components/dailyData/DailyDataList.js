@@ -12,7 +12,7 @@ export const DailyDataList = () => {
                 .then(() => setIsLoading(false))
     }, [])
     const handleDetailLink = (ddId) => {
-        <Route type="button" class="btn btn-primary" data-toggle="modal" data-target="#dataDetails" to={`/daily_logs/detail/${ddId}`}></Route>
+        <Route type="button" className="btn btn-primary" data-toggle="modal" data-target="#dataDetails" to={`/daily_logs/detail/${ddId}`}></Route>
     }
 
     if (isLoading) return (<div>Loading</div>)
@@ -20,7 +20,7 @@ export const DailyDataList = () => {
     return (<>
         <div>
             <div>Daily Data</div>
-                <table class="table table-bordered table-dark table-hover" >
+                <table className="table table-bordered table-dark table-hover" >
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -34,15 +34,17 @@ export const DailyDataList = () => {
                     <th scope="col">Cyanuric Acid</th>
                     <th scope="col">Salinity</th>
                     <th scope="col">Filter Pressure</th>
+                    <th scope="col"></th>
+                    <th scope='col'>Employee</th>
                   </tr>
                   </thead>
                 <tbody>
             {dailyData.map(dd =>
-                  <tr onClick={(e) => {
+                  <tr key={dd.id} onClick={(e) => {
                     e.preventDefault()
                     handleDetailLink(dd.id)
                   }}>
-                    <th scope="row" key={dd.id}>{dd.id}</th>
+                    <th scope="row" >{dd.id}</th>
                     <td>{new Date(dd.date).toLocaleDateString()}</td>
                     <td>{dd.pumphouse?.name}</td>
                     <td>{dd.hardness?.ppm}</td>
@@ -53,7 +55,8 @@ export const DailyDataList = () => {
                     <td>{dd.cyanuric_acid?.ppm}</td>
                     <td>{dd.salinity?.ppm}</td>
                     <td>{dd.filter_pressure?.psi}</td>
-                    <Link type="button" class="btn btn-primary" data-toggle="modal" data-backdrop='false' data-target="#dataDetails" to={`/daily_logs/detail/${dd.id}`}>Details</Link>
+                    <td><Link type="link" className="btn btn-primary" data-toggle="modal" data-backdrop='false' data-target="#dataDetails" to={`/daily_logs/detail/${dd.id}`}>Details</Link></td>
+                    <td>{dd.user?.first_name} {dd.user?.last_name}</td>
                   </tr>
                     )}
                   </tbody>

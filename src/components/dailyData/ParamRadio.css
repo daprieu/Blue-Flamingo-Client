@@ -29,6 +29,7 @@
 }
 /* hardness */
 .hardnessRadio {
+    display: flex;
     box-shadow: 1em 1.5em 2em #5f5757;
     border-radius: 1em;
     text-align: center;
@@ -38,6 +39,7 @@
 }
 /* total chlorine */
 .tChlorineRadio {
+    display: flex;
     box-shadow: 1em 1.5em 2em #5f5757;
     border-radius: 1em;
     text-align: center;
@@ -46,6 +48,7 @@
 }
 /* free chlorine */
 .fChlorineRadio {
+    display: flex;
     box-shadow: 1em 1.5em 2em #5f5757;
     border-radius: 1em;
     text-align: center;
@@ -55,6 +58,7 @@
 }
 /* pH */
 .pHRadio {
+    display: flex;
     box-shadow: 1em 1.5em 2em #5f5757;
     border-radius: 1em;
     text-align: center;
@@ -64,6 +68,7 @@
 }
 /* alkalinity */
 .alkalinityRadio {
+    display: flex;
     box-shadow: 1em 1.5em 2em #5f5757;
     border-radius: 1em;
     text-align: center;
@@ -73,6 +78,7 @@
 }
 /* cyanuric acid */
 .cyanuricAcidRadio {
+    display: flex;
     box-shadow: 1em 1.5em 2em #5f5757;
     border-radius: 1em;
     text-align: center;
@@ -82,6 +88,7 @@
 }
 /* salinity */
 .salinityRadio {
+    display: flex;
     box-shadow: 1em 1.5em 2em #5f5757;
     border-radius: 1em;
     text-align: center;
@@ -91,6 +98,7 @@
 }
 /* filter pressure */
 .filterPressureRadio {
+    display: flex;
     box-shadow: 1em 1.5em 2em #5f5757;
     border-radius: 1em;
     text-align: center;

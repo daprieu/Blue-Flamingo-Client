@@ -34,17 +34,13 @@ export const Login = () => {
                     history.push("/")
                 }
                 else {
-                    invalidDialog.current.showModal()
+                    window.alert("Email address or Password is incorrect")
                 }
             })
     }
 
     return (
         <main className="container--login">
-            <dialog className="dialog dialog--auth" ref={invalidDialog}>
-                <div>Email or password was not valid.</div>
-                <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
-            </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
                     <h1>Blue Flamingo Pool Service</h1>
@@ -61,6 +57,7 @@ export const Login = () => {
                         textAlign:"center"
                     }}>
                         <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
+                        
                     </fieldset>
                 </form>
             </section>

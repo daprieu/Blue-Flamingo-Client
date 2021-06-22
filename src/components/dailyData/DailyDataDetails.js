@@ -6,6 +6,7 @@ import "./DataDetails.css"
 export const DailyDataDetail = () => {
     const { getDailyDataById, deleteDailyData } = useContext(DailyDataContext)
     const history = useHistory()
+    const userId = JSON.parse(localStorage.getItem("userId"))
 
     const [data, setData] = useState({
         user: 0,
@@ -50,12 +51,12 @@ export const DailyDataDetail = () => {
     return (
         <>
             
-                <div class="modal fade bd-example-modal-lg container" id="dataDetails" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg container">
-                    <div class="modal-content container">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="dataDetails">Details for Data entry {data?.id}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={(e) => {
+                <div className="modal fade bd-example-modal-lg container" id="dataDetails" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-lg container">
+                    <div className="modal-content container">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="dataDetails">Details for Data entry {data?.id}</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={(e) => {
                                 e.preventDefault()
                                 history.push(`/daily_logs`)
                                 }}>
@@ -64,7 +65,7 @@ export const DailyDataDetail = () => {
                         </div>
                         <div>
             <div>Daily Data</div>
-                <table class="tableDetail table-bordered table-dark table-hover " id="tableDetails" >
+                <table className="tableDetail table-bordered table-dark table-hover " id="tableDetails" >
                 <thead>
                   <tr>
                     <th scope="col" id="colDetails" style={{width: '.25em'}} >#</th>
@@ -98,7 +99,7 @@ export const DailyDataDetail = () => {
                   </tbody>
             </table>
         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <section className="data">
                                {data?.hardness_note === "" ? <></> : <div>
                                     <div id="noteTitle">Hardness Note:</div>
@@ -130,19 +131,20 @@ export const DailyDataDetail = () => {
                                 </div>}
                             </section>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={(e) => {
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={(e) => {
                                 e.preventDefault()
                                 history.push(`/daily_logs`)
                                 }}>Close</button>
-                            <Link  type="link" data-toggle="modal" data-target="#exampleModal" data-backdrop='false' to={{
+    {userId === data.user.id ? <><Link  type="link" data-toggle="modal" data-target="#exampleModal" data-backdrop='false' to={{
                         pathname: `/daily_logs/edit/${data.id}`
                     }}>
-                        <button type="button" class="btn btn-primary" >Edit Data</button></Link>
-                    <button type="button" class="btn btn-danger" id="deleteDailyData" data-dismiss="modal" onClick={(e) => {
+                        <button type="button" className="btn btn-primary" >Edit Data</button></Link> 
+                    <button type="button" className="btn btn-danger" id="deleteDailyData" data-dismiss="modal" onClick={(e) => {
                       e.preventDefault()
                       handleDelete(data.id)
-                    }}>Delete</button>
+                    }}>Delete</button></>
+                    : ""}
                         </div>
                     </div>
                 </div>
