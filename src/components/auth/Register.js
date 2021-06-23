@@ -30,7 +30,7 @@ export const Register = (props) => {
                 "phone_number": phoneNumber.current.value
             }
 
-            return fetch("http://localhost:8000/register", {
+            return fetch("https://blue-flamingo-server.herokuapp.com/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

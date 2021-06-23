@@ -6,7 +6,7 @@ export const PumphouseProvider = (props) => {
     const [pumphouse, setPumphouse] = useState([])
 
     const getPumphouse = () => {
-        return fetch(`http://localhost:8000/pumphouse`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/pumphouse`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -18,7 +18,7 @@ export const PumphouseProvider = (props) => {
         })
     }
     const addPumphouse = pumphouseObj => {
-        return fetch("http://localhost:8000/pumphouse", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/pumphouse", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const PumphouseProvider = (props) => {
             .then(getPumphouse)
     }
     const deletePumphouse = (id) => {
-        return fetch(`http://localhost:8000/pumphouse/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/pumphouse/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -39,7 +39,7 @@ export const PumphouseProvider = (props) => {
             .then(getPumphouse)
     }
     const getPumphouseById = id => {
-        return fetch(`http://localhost:8000/pumphouse/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/pumphouse/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -47,7 +47,7 @@ export const PumphouseProvider = (props) => {
             .then(res => res.json())
     }
     const editPumphouseById = pumphouse => {
-        return fetch(`http://localhost:8000/pumphouse/${pumphouse.id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/pumphouse/${pumphouse.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

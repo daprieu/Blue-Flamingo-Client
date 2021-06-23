@@ -6,7 +6,7 @@ export const HardnessParametersProvider = (props) => {
     const [hardnessParameters, setHardnessParameters] = useState()
 
     const getHardnessParams = () => {
-        return fetch(`http://localhost:8000/hardness`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/hardness`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -18,7 +18,7 @@ export const HardnessParametersProvider = (props) => {
         })
     }
     const addHardnessParam = paramObj => {
-        return fetch("http://localhost:8000/hardness", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/hardness", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const HardnessParametersProvider = (props) => {
             .then(getHardnessParams)
     }
     const deleteHardnessParam = (id) => {
-        return fetch(`http://localhost:8000/hardness/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/hardness/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -39,7 +39,7 @@ export const HardnessParametersProvider = (props) => {
             .then(getHardnessParams)
     }
     const getHardnessParamById = id => {
-        return fetch(`http://localhost:8000/hardness/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/hardness/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -47,7 +47,7 @@ export const HardnessParametersProvider = (props) => {
             .then(res => res.json())
     }
     const editHardnessParamById = param => {
-        return fetch(`http://localhost:8000/hardness/${param.id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/hardness/${param.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
