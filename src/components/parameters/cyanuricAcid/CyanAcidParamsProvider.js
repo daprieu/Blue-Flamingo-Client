@@ -6,7 +6,7 @@ export const CyanuricAcidParametersProvider = (props) => {
     const [cyanAcidParameters, setCyanAcidParameters] = useState()
 
     const getCyanuricAcidParams = () => {
-        return fetch(`http://localhost:8000/cyanuricacid`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/cyanuricacid`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -18,7 +18,7 @@ export const CyanuricAcidParametersProvider = (props) => {
         })
     }
     const addCyanuricAcidParam = paramObj => {
-        return fetch("http://localhost:8000/cyanuricacid", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/cyanuricacid", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const CyanuricAcidParametersProvider = (props) => {
             .then(getCyanuricAcidParams)
     }
     const deleteCyanuricAcidParam = (id) => {
-        return fetch(`http://localhost:8000/cyanuricacid/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/cyanuricacid/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -39,7 +39,7 @@ export const CyanuricAcidParametersProvider = (props) => {
             .then(getCyanuricAcidParams)
     }
     const getCyanuricAcidParamById = id => {
-        return fetch(`http://localhost:8000/cyanuricacid/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/cyanuricacid/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -47,7 +47,7 @@ export const CyanuricAcidParametersProvider = (props) => {
             .then(res => res.json())
     }
     const editCyanuricAcidParamById = param => {
-        return fetch(`http://localhost:8000/cyanuricacid/${param.id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/cyanuricacid/${param.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

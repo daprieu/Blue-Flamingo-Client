@@ -6,7 +6,7 @@ export const PHParametersProvider = (props) => {
     const [pHParameters, setPHParameters] = useState()
 
     const getPHParams = () => {
-        return fetch(`http://localhost:8000/ph`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/ph`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -19,7 +19,7 @@ export const PHParametersProvider = (props) => {
     }
 
     const addPHParam = paramObj => {
-        return fetch("http://localhost:8000/ph", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/ph", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const PHParametersProvider = (props) => {
             .then(getPHParams)
     }
     const deletePHParam = (id) => {
-        return fetch(`http://localhost:8000/ph/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/ph/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -40,7 +40,7 @@ export const PHParametersProvider = (props) => {
             .then(getPHParams)
     }
     const getPHParamById = id => {
-        return fetch(`http://localhost:8000/ph/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/ph/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -48,7 +48,7 @@ export const PHParametersProvider = (props) => {
             .then(res => res.json())
     }
     const editPHParamById = param => {
-        return fetch(`http://localhost:8000/ph/${param.id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/ph/${param.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
