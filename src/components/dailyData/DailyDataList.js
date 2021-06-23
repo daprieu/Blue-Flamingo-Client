@@ -6,7 +6,6 @@ import { Link, Route, useHistory } from "react-router-dom"
 export const DailyDataList = () => {
     const { dailyData, getDailyData } = useContext(DailyDataContext)
     const [isLoading, setIsLoading] = useState(true)
-    console.log('dailyData: ', dailyData);
     useEffect(() => {
             getDailyData()
                 .then(() => setIsLoading(false))
