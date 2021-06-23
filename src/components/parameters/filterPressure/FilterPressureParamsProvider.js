@@ -6,7 +6,7 @@ export const FilterPressureParametersProvider = (props) => {
     const [filterPressureParameters, setFilterPressureParameters] = useState()
 
     const getFilterPressureParams = () => {
-        return fetch(`http://localhost:8000/filterpressure`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/filterpressure`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -18,7 +18,7 @@ export const FilterPressureParametersProvider = (props) => {
         })
     }
     const addFilterPressureParam = paramObj => {
-        return fetch("http://localhost:8000/filterpressure", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/filterpressure", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const FilterPressureParametersProvider = (props) => {
             .then(getFilterPressureParams)
     }
     const deleteFilterPressureParam = (id) => {
-        return fetch(`http://localhost:8000/filterpressure/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/filterpressure/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -39,7 +39,7 @@ export const FilterPressureParametersProvider = (props) => {
             .then(getFilterPressureParams)
     }
     const getFilterPressureParamById = id => {
-        return fetch(`http://localhost:8000/filterpressure/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/filterpressure/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -47,7 +47,7 @@ export const FilterPressureParametersProvider = (props) => {
             .then(res => res.json())
     }
     const editFilterPressureParamById = param => {
-        return fetch(`http://localhost:8000/filterpressure/${param.id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/filterpressure/${param.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

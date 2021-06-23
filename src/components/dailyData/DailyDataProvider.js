@@ -6,7 +6,7 @@ export const DailyDataProvider = (props) => {
     const [dailyData, setDailyData] = useState([])
 
     const getDailyData = () => {
-        return fetch(`http://localhost:8000/pumphousedata`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/pumphousedata`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -18,7 +18,7 @@ export const DailyDataProvider = (props) => {
         })
     }
     const addDailyData = dailyDataObj => {
-        return fetch("http://localhost:8000/pumphousedata", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/pumphousedata", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const DailyDataProvider = (props) => {
             .then(getDailyData)
     }
     const deleteDailyData = (id) => {
-        return fetch(`http://localhost:8000/pumphousedata/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/pumphousedata/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -39,7 +39,7 @@ export const DailyDataProvider = (props) => {
             .then(getDailyData)
     }
     const getDailyDataById = id => {
-        return fetch(`http://localhost:8000/pumphousedata/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/pumphousedata/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -51,7 +51,7 @@ export const DailyDataProvider = (props) => {
             })
     }
     const editDailyDataById = param => {
-        return fetch(`http://localhost:8000/pumphousedata/${param.id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/pumphousedata/${param.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

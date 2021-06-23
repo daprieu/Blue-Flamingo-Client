@@ -6,7 +6,7 @@ export const FreeChlorineParametersProvider = (props) => {
     const [freeChlorineParameters, setFreeChlorineParameters] = useState()
 
     const getFreeChlorineParams = () => {
-        return fetch(`http://localhost:8000/freechlorine`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/freechlorine`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -18,7 +18,7 @@ export const FreeChlorineParametersProvider = (props) => {
         })
     }
     const addFreeChlorineParam = paramObj => {
-        return fetch("http://localhost:8000/freechlorine", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/freechlorine", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const FreeChlorineParametersProvider = (props) => {
             .then(getFreeChlorineParams)
     }
     const deleteFreeChlorineParam = (id) => {
-        return fetch(`http://localhost:8000/freechlorine/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/freechlorine/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -39,7 +39,7 @@ export const FreeChlorineParametersProvider = (props) => {
             .then(getFreeChlorineParams)
     }
     const getFreeChlorineParamById = id => {
-        return fetch(`http://localhost:8000/freechlorine/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/freechlorine/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -47,7 +47,7 @@ export const FreeChlorineParametersProvider = (props) => {
             .then(res => res.json())
     }
     const editFreeChlorineParamById = param => {
-        return fetch(`http://localhost:8000/freechlorine/${param.id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/freechlorine/${param.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
