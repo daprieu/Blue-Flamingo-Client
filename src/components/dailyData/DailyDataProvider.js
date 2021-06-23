@@ -46,6 +46,7 @@ export const DailyDataProvider = (props) => {
         })
             .then(res => res.json())
             .then(res => {
+                console.log('res: ', res);
                 setDailyData(res)
                 return res
             })

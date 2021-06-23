@@ -79,7 +79,6 @@ export const DailyDataDetail = () => {
                     <th scope="col" id="colDetails" >Cyanuric Acid</th>
                     <th scope="col" id="colDetails" >Salinity</th>
                     <th scope="col" id="colDetails" >Filter Pressure</th>
-                    {/* <th scope="col">Filter Baskets Cleaned</th> */}
                   </tr>
                   </thead>
                 <tbody>
