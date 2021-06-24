@@ -6,7 +6,7 @@ export const TotalChlorineParametersProvider = (props) => {
     const [totalChlorineParameters, setTotalChlorineParameters] = useState()
 
     const getTotalChlorineParams = () => {
-        return fetch(`http://localhost:8000/totalchlorine`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/totalchlorine`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -18,7 +18,7 @@ export const TotalChlorineParametersProvider = (props) => {
         })
     }
     const addTotalChlorineParam = paramObj => {
-        return fetch("http://localhost:8000/totalchlorine", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/totalchlorine", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const TotalChlorineParametersProvider = (props) => {
             .then(getTotalChlorineParams)
     }
     const deleteTotalChlorineParam = (id) => {
-        return fetch(`http://localhost:8000/totalchlorine/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/totalchlorine/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -39,7 +39,7 @@ export const TotalChlorineParametersProvider = (props) => {
             .then(getTotalChlorineParams)
     }
     const getTotalChlorineParamById = id => {
-        return fetch(`http://localhost:8000/totalchlorine/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/totalchlorine/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -47,7 +47,7 @@ export const TotalChlorineParametersProvider = (props) => {
             .then(res => res.json())
     }
     const editTotalChlorineParamById = param => {
-        return fetch(`http://localhost:8000/totalchlorine/${param.id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/totalchlorine/${param.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

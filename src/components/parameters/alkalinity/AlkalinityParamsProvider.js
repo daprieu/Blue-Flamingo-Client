@@ -6,7 +6,7 @@ export const AlkalinityParametersProvider = (props) => {
     const [alkParameters, setAlkParameters] = useState()
 
     const getAlkalinityParams = () => {
-        return fetch(`http://localhost:8000/alkalinity`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/alkalinity`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -18,7 +18,7 @@ export const AlkalinityParametersProvider = (props) => {
         })
     }
     const addAlkalinityParam = paramObj => {
-        return fetch("http://localhost:8000/alkalinity", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/alkalinity", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const AlkalinityParametersProvider = (props) => {
             .then(getAlkalinityParams)
     }
     const deleteAlkalinityParam = (id) => {
-        return fetch(`http://localhost:8000/alkalinity/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/alkalinity/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -39,7 +39,7 @@ export const AlkalinityParametersProvider = (props) => {
             .then(getAlkalinityParams)
     }
     const getAlkalinityParamById = id => {
-        return fetch(`http://localhost:8000/alkalinity/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/alkalinity/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -47,7 +47,7 @@ export const AlkalinityParametersProvider = (props) => {
             .then(res => res.json())
     }
     const editAlkalinityParamById = param => {
-        return fetch(`http://localhost:8000/alkalinity/${param.id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/alkalinity/${param.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

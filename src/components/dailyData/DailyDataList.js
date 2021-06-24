@@ -11,7 +11,9 @@ export const DailyDataList = () => {
                 .then(() => setIsLoading(false))
     }, [])
     const showDataDetail = (dataId) => {
+      
       history.push(`/daily_logs/detail/${dataId}`)
+      
   }
     const history = useHistory()
     if (isLoading) return (<div>Loading</div>)

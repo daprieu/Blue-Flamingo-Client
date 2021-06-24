@@ -6,7 +6,7 @@ export const SalinityParametersProvider = (props) => {
     const [salinityParameters, setSalinityParameters] = useState()
 
     const getSalinityParams = () => {
-        return fetch(`http://localhost:8000/salinity`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/salinity`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -19,7 +19,7 @@ export const SalinityParametersProvider = (props) => {
     }
 
     const addSalinityParam = paramObj => {
-        return fetch("http://localhost:8000/salinity", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/salinity", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const SalinityParametersProvider = (props) => {
             .then(getSalinityParams)
     }
     const deleteSalinityParam = (id) => {
-        return fetch(`http://localhost:8000/salinity/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/salinity/${id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -40,7 +40,7 @@ export const SalinityParametersProvider = (props) => {
             .then(getSalinityParams)
     }
     const getSalinityParamById = id => {
-        return fetch(`http://localhost:8000/salinity/${id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/salinity/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
             }
@@ -48,7 +48,7 @@ export const SalinityParametersProvider = (props) => {
             .then(res => res.json())
     }
     const editSalinityParamById = param => {
-        return fetch(`http://localhost:8000/salinity/${param.id}`, {
+        return fetch(`https://blue-flamingo-server.herokuapp.com/salinity/${param.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

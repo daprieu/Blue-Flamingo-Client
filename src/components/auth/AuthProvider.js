@@ -7,7 +7,7 @@ export const ProfileProvider = (props) => {
     const [profile, setProfile] = useState({events:[]})
 
     const getProfile = () => {
-        return fetch("http://localhost:8000/users", {
+        return fetch("https://blue-flamingo-server.herokuapp.com/users", {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
