@@ -38,7 +38,7 @@ export const DailyDataProvider = (props) => {
         })
             .then(getDailyData)
     }
-    const getDailyDataById = (id) => {
+    const getDailyDataById = id => {
         return fetch(`https://blue-flamingo-server.herokuapp.com/pumphousedata/${id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("BF_user_id")}`
@@ -50,7 +50,7 @@ export const DailyDataProvider = (props) => {
                 return res
             })
     }
-    const editDailyDataById = (param) => {
+    const editDailyDataById = param => {
         return fetch(`https://blue-flamingo-server.herokuapp.com/pumphousedata/${param.id}`, {
             method: "PUT",
             headers: {
