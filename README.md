@@ -2,7 +2,7 @@
 
 ## Description & Background
 
-Nashville is known for its hospitality and local food scene, and I love playing host to friends and family who visit by showcasing the restaurants and bars Nashville has to offer. For my full-stack project, I wanted to build an application that helps support local businesses and their exposure, while also helping users on a budget. A user can search and filter happy hours by today's day or any day of the week, location, drink types, food, and more to find the best spot based on what they offer and what a user is looking for.
+During my career time at the Nashville Zoo, I worked on all of the filtration and pumphouse management around the park. This consisted of walking the park everyday before the front gates opened up and would check the pool chemistry of all the pools, ponds, and other water features around the zoo. After taking chemistry readings and checking filtration all of this data would be recorded on a clip board in an individual pumphouse around the park. This way of recording had a few flaws, one was that we would never record the data in a single data-base which would require walking to a pumphouse to review data for a supervisor if they requested the info and the other was the unnecessary use of paper that would sometimes get dirty or have poor hand writing from other Technicians that recorded the data. My app aims to allow technicians to add and record daily data to a single data-base. Allowing for easy viewing of what the water chemistry looked like on any given day and could see notes about how a tech handled them that day. 
 
 ## Technologies Used
 
