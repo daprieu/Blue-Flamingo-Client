@@ -1,20 +1,21 @@
 import React, { useContext, useEffect, useState } from "react"
 import { DailyDataContext } from "./DailyDataProvider"
-import { Link, Route } from "react-router-dom"
+import { Link, Route, useHistory } from "react-router-dom"
 // import "/params.css"
 
 export const DailyDataList = () => {
     const { dailyData, getDailyData } = useContext(DailyDataContext)
     const [isLoading, setIsLoading] = useState(true)
-
     useEffect(() => {
             getDailyData()
                 .then(() => setIsLoading(false))
     }, [])
-    const handleDetailLink = (ddId) => {
-        <Route type="button" className="btn btn-primary" data-toggle="modal" data-target="#dataDetails" to={`/daily_logs/detail/${ddId}`}></Route>
-    }
-
+    const showDataDetail = (dataId) => {
+      
+      history.push(`/daily_logs/detail/${dataId}`)
+      
+  }
+    const history = useHistory()
     if (isLoading) return (<div>Loading</div>)
 
     return (<>
@@ -39,11 +40,8 @@ export const DailyDataList = () => {
                   </tr>
                   </thead>
                 <tbody>
-            {dailyData.map(dd =>
-                  <tr key={dd.id} onClick={(e) => {
-                    e.preventDefault()
-                    handleDetailLink(dd.id)
-                  }}>
+            {dailyData?.map(dd =>
+                  <tr key={dd.id}>
                     <th scope="row" >{dd.id}</th>
                     <td>{new Date(dd.date).toLocaleDateString()}</td>
                     <td>{dd.pumphouse?.name}</td>
@@ -55,7 +53,8 @@ export const DailyDataList = () => {
                     <td>{dd.cyanuric_acid?.ppm}</td>
                     <td>{dd.salinity?.ppm}</td>
                     <td>{dd.filter_pressure?.psi}</td>
-                    <td><Link type="link" className="btn btn-primary" data-toggle="modal" data-backdrop='false' data-target="#dataDetails" to={`/daily_logs/detail/${dd.id}`}>Details</Link></td>
+                    <td><button type="button" className="btn btn-primary" data-toggle="modal" data-backdrop='false' data-target="#dataDetails" onClick={(e) => {
+                      showDataDetail(dd.id)}}>Details</button></td>
                     <td>{dd.user?.first_name} {dd.user?.last_name}</td>
                   </tr>
                     )}
